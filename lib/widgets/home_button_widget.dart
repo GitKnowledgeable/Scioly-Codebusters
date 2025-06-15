@@ -118,7 +118,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
-                    vertical: 10,
+                    vertical: 15,
                   ),
                   child: Row(
                     children: [
@@ -141,7 +141,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                             widget.btnText,
                             style: TextStyle(
                               fontFamily: 'JetBrains Mono',
-                              fontSize: 15,
+                              fontSize: 17,
                               color: widget.neonColor,
                               fontWeight: FontWeight.w700,
                               shadows: [

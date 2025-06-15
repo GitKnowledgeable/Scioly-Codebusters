@@ -41,7 +41,9 @@ class HomePage extends StatelessWidget {
                   //   image: AssetImage("../../codebusters-logo.png"),
                   //   fit: BoxFit.fitWidth,
                   // ),
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 50),
+                  HomeLogo(),
+                  const SizedBox(height: 50),
                   HomeButtonWidget(
                     btnText: "Cryptograms",
                     neonColor: Colors.pinkAccent,
