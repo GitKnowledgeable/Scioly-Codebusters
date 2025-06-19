@@ -24,6 +24,8 @@ export 'logic/pattern_map.dart';
 export 'widgets/aristocrat_grid_widget.dart';
 export 'widgets/cell_widget.dart';
 export 'widgets/keyboard_widget.dart';
+export 'widgets/home_button_widget.dart';
+export 'widgets/home_logo.dart';
 export 'widgets/timer_widget.dart';
 export 'widgets/dictionary_widget.dart';
 

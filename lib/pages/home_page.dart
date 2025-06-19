@@ -27,21 +27,27 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: SizedBox(
-            width: screenW,
-            height: screenH,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                /*const Image(
-                  image: AssetImage("images/codebusters-logo.png"),
-                  fit: BoxFit.fitWidth,
-                ),*/
-                const SizedBox(height: 10),
-                SizedBox(
-                  child: ElevatedButton(
+      body: Container(
+        decoration: AppTheme.backgroundGradient,
+        child: SingleChildScrollView(
+          child: Center(
+            child: SizedBox(
+              width: screenW,
+              height: screenH,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // const Image(
+                  //   image: AssetImage("../../codebusters-logo.png"),
+                  //   fit: BoxFit.fitWidth,
+                  // ),
+                  const SizedBox(height: 50),
+                  HomeLogo(),
+                  const SizedBox(height: 50),
+                  HomeButtonWidget(
+                    btnText: "Cryptograms",
+                    neonColor: Colors.pinkAccent,
+                    num: "01",
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -73,10 +79,6 @@ class HomePage extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text(
-                      "Patristocrats",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                    ),
                   ),
                 ),
                 const SizedBox(height: 25),
