@@ -15,7 +15,11 @@ void main() async {
   }
   runApp(
     ProviderScope(
-      child: MaterialApp(home: HomePage(), theme: AppTheme.theme),
+      child: MaterialApp(
+        home: HomePage(),
+        theme: AppTheme.theme,
+        debugShowCheckedModeBanner: false,
+      ),
     ),
   );
 }
