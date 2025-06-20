@@ -27,15 +27,16 @@ final keyboardH = screenH * 0.25; // Height of the keyboard widget
 final appThemeProvider = AppTheme.theme;
 
 class AppTheme {
-  static const Color primary = Color(0xFF00FF41); // Deep red #00ff41
+  static const Color primary = Color(0xFFD32F2F);
   static const Color primaryLight = Color(0xFFD32F2F);
   static const Color primaryDark = Color(0xFF7F0000);
   static const Color background = Colors.white;
+  static const Color appBarBackground = Colors.transparent;
   static const Color surface = Color(0xFFF5F5F5);
   static const Color accent = Color(0xFFEF5350); // Softer red
   static const Color keyboardKey = Color(0xFFFAFAFA);
   static const Color keyboardKeyText = Colors.black87;
-  static const Color logoGreen = Color(0xFF00FF41);
+  static const Color logoGreen = Color(0xFF00FF41); // Also used for logo
 
   static const backgroundColors = [
     Color(0xFF0a0a0a),
@@ -86,9 +87,9 @@ class AppTheme {
     ),
     textTheme: textTheme,
     appBarTheme: AppBarTheme(
-      backgroundColor: primary,
-      foregroundColor: Colors.white,
-      elevation: 4,
+      backgroundColor: appBarBackground,
+      foregroundColor: logoGreen,
+      elevation: 0,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(

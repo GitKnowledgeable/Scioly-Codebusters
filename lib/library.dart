@@ -28,6 +28,10 @@ export 'widgets/home_button_widget.dart';
 export 'widgets/home_logo.dart';
 export 'widgets/timer_widget.dart';
 export 'widgets/dictionary_widget.dart';
+export 'widgets/vertical_falling_line_widget.dart';
+export 'widgets/matrix_background_widget.dart';
+
+export 'painters/vertical_text.dart';
 
 export 'theme.dart';
 export 'main.dart';
