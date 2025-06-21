@@ -13,14 +13,15 @@ const decorationHeight = containerWidth * 0.7;
 const padding = 4.0;
 var screenW = LayoutConfig.width;
 var screenH = LayoutConfig.height;
-var maxLength = (screenW * 0.9) - insetPadding * 2;
+double get maxLength => (screenW * 0.9) - insetPadding * 2;
 //styling for keyboard
 const double spacing = 4;
 const double undoButtonHeight = 50;
 const double horizontalBuffer = 20;
-final safeWidth = screenW - horizontalBuffer;
+double get safeWidth => screenW - horizontalBuffer;
 final maxKeysInRow = 10;
-final keyWidth = (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
+double get keyWidth =>
+    (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
 final keyboardH = screenH * 0.25; // Height of the keyboard widget
 //panel height for timer etc.
 const double panelHeight = 50.0;
@@ -57,13 +58,15 @@ class AppTheme {
     headlineLarge: TextStyle(
       fontSize: 32,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
-      fontFamily: 'Roboto',
+      color: logoGreen,
+      fontFamily: 'JetBrainsMono',
     ),
     headlineSmall: TextStyle(
-      fontSize: 20,
+      fontSize: 15,
       fontWeight: FontWeight.w600,
-      color: Colors.black87,
+      color: Colors.grey.shade700,
+      wordSpacing: 5,
+      fontFamily: 'JetBrainsMono',
     ),
     bodyLarge: TextStyle(
       fontSize: 16,

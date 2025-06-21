@@ -13,11 +13,12 @@ class MatrixBackgroundWidget extends ConsumerStatefulWidget {
       _MatrixBackgroundWidgetState();
 }
 
-class _MatrixBackgroundWidgetState
-    extends ConsumerState<MatrixBackgroundWidget> {
+class _MatrixBackgroundWidgetState extends ConsumerState<MatrixBackgroundWidget>
+    with RouteAware {
   final List<LineData> _fallingLines = [];
 
   Random random = Random();
+  late Timer? _lineSpawnTimer;
 
   @override
   void initState() {
@@ -29,7 +30,9 @@ class _MatrixBackgroundWidgetState
   }
 
   void _startGeneratingLines() {
-    Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    _lineSpawnTimer = Timer.periodic(const Duration(milliseconds: 100), (
+      timer,
+    ) {
       if (!mounted) {
         timer.cancel();
         return;
@@ -48,6 +51,34 @@ class _MatrixBackgroundWidgetState
         });
       }); // Just deleting the created lines after 10 seconds
     });
+  }
+
+  @override
+  void dispose() {
+    print("MatrixBackgroundWidget disposed");
+    _lineSpawnTimer?.cancel();
+    routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void didPushNext() {
+    // When new page is pushed on route
+    super.didPushNext();
+    _lineSpawnTimer?.cancel();
+  }
+
+  @override
+  void didPopNext() {
+    // When new page is popped off route
+    super.didPopNext();
+    _startGeneratingLines();
   }
 
   @override

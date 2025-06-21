@@ -19,146 +19,121 @@ class GamePageSetup extends ConsumerWidget {
     final gProvider = ref.read(gameProvider(key).notifier);
     var cellCount = ref.watch(gameProvider(key).select((s) => s.cells.length));
     final stats = ref.watch(gameModeStatsProvider(key));
+    final buttonMargin = padding + 14;
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Center(
-            child: Text(
-              gameId,
-              style: Theme.of(context).textTheme.headlineMedium,
+    return Container(
+      decoration: AppTheme.backgroundGradient,
+      child: Scaffold(
+        backgroundColor: AppTheme.appBarBackground,
+        appBar: AppBar(backgroundColor: AppTheme.appBarBackground),
+        body: Column(
+          children: [
+            Center(
+              child: Text(
+                gameId.toUpperCase(),
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            padding: EdgeInsets.all(insetPadding),
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: padding),
-                  Text(
-                    "Select a game mode",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        gmProvider.setGameMode(GameMode.assisted);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: gameMode == GameMode.assisted
-                            ? Colors.grey
-                            : null,
-                        padding: EdgeInsets.zero,
-                      ),
-                      child: const Text(
-                        "Assisted",
-                        style: TextStyle(fontSize: 30, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: padding),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        gmProvider.setGameMode(GameMode.manual);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: gameMode == GameMode.manual
-                            ? Colors.grey
-                            : null,
-                        padding: EdgeInsets.zero,
-                      ),
-                      child: const Text(
-                        "Manual",
-                        style: TextStyle(fontSize: 30, color: Colors.white),
+            SizedBox(height: 10),
+            Center(
+              child: Text(
+                "Select Game Mode".toUpperCase(),
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(insetPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: buttonMargin),
+                    SizedBox(
+                      width: double.infinity,
+                      child: HomeButtonWidget(
+                        btnText: "Assisted",
+                        neonColor: gameMode == GameMode.assisted
+                            ? Colors.lightGreenAccent
+                            : Colors.grey,
+                        initialAlpha: 0,
+                        finalAlpha: 10,
+                        onPressed: () {
+                          gmProvider.setGameMode(GameMode.assisted);
+                        },
                       ),
                     ),
-                  ),
-                  SizedBox(height: padding),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: undoButtonHeight,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => StatsGrid(
-                                    widgetKey: key,
-                                    fastestAllTime: stats.fastestSolve,
-                                    averageAllTime: stats.averageSolve,
-                                    fastestLast10: stats.fastestInLast(10),
-                                    averageLast10: stats.averageInLast(10),
-                                    fastestPrevious10: stats.fastestInLast(
-                                      20,
-                                      skip: 10,
-                                    ),
-                                    averagePrevious10: stats.averageInLast(
-                                      20,
-                                      skip: 10,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                            child: const Text("Stats"),
-                          ),
-                        ),
+                    SizedBox(height: buttonMargin),
+                    SizedBox(
+                      width: double.infinity,
+                      child: HomeButtonWidget(
+                        btnText: "Manual",
+                        neonColor: gameMode == GameMode.manual
+                            ? Colors.lightGreenAccent
+                            : Colors.grey,
+                        initialAlpha: 0,
+                        finalAlpha: 10,
+                        onPressed: () {
+                          gmProvider.setGameMode(GameMode.manual);
+                        },
                       ),
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: undoButtonHeight,
-                          child: ElevatedButton(
-                            onPressed: () => Null,
-                            child: const Text("How to Play"),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: padding),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: undoButtonHeight,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => GamePage(
-                                    gameId: gameId,
-                                    gameMode: gameMode,
-                                    language: language,
-                                  ),
-                                ),
-                              );
-                              gProvider.buildCryptogram(
-                                gameMode,
-                                language,
-                                gameId,
-                              );
-                            },
-                            child: const Text("New Puzzle"),
-                          ),
-                        ),
-                      ),
-                      if (cellCount > 0)
+                    ),
+                    SizedBox(height: buttonMargin),
+                    Spacer(),
+                    Row(
+                      children: [
                         Expanded(
                           child: SizedBox(
                             width: double.infinity,
-                            height: undoButtonHeight,
-                            child: ElevatedButton(
+                            child: HomeButtonWidget(
+                              btnText: "Stats",
+                              neonColor: Colors.yellowAccent,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => StatsGrid(
+                                      widgetKey: key,
+                                      fastestAllTime: stats.fastestSolve,
+                                      averageAllTime: stats.averageSolve,
+                                      fastestLast10: stats.fastestInLast(10),
+                                      averageLast10: stats.averageInLast(10),
+                                      fastestPrevious10: stats.fastestInLast(
+                                        20,
+                                        skip: 10,
+                                      ),
+                                      averagePrevious10: stats.averageInLast(
+                                        20,
+                                        skip: 10,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: buttonMargin),
+                        Expanded(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: HomeButtonWidget(
+                              btnText: "How to Play",
+                              neonColor: Colors.yellowAccent,
+                              onPressed: () => null,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: buttonMargin),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: HomeButtonWidget(
+                              btnText: "New Puzzle",
+                              neonColor: Colors.redAccent,
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -170,18 +145,46 @@ class GamePageSetup extends ConsumerWidget {
                                     ),
                                   ),
                                 );
+                                gProvider.buildCryptogram(
+                                  gameMode,
+                                  language,
+                                  gameId,
+                                );
                               },
-                              child: const Text("Continue"),
                             ),
                           ),
                         ),
-                    ],
-                  ),
-                ],
+                        if (cellCount > 0) SizedBox(width: buttonMargin - 10),
+                        if (cellCount > 0)
+                          Expanded(
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: HomeButtonWidget(
+                                btnText: "Continue",
+                                neonColor: Colors.pinkAccent,
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => GamePage(
+                                        gameId: gameId,
+                                        gameMode: gameMode,
+                                        language: language,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
