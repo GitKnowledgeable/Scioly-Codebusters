@@ -61,7 +61,6 @@ class DictionaryWidget extends StatelessWidget {
                                 color: Colors.black,
                                 border: Border.all(color: curColor, width: 2),
                               ),
-                              // margin: EdgeInsets.all(2),
                               padding: EdgeInsets.symmetric(
                                 vertical: 5,
                                 horizontal: 20,

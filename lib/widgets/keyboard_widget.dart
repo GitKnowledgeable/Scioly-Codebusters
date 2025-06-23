@@ -21,6 +21,8 @@ class KeyboardWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     if (language == Language.spanish && rows[2].length == 7) {
       rows[2].insert(6, 'Ñ');
+    } else if (language == Language.english && rows[2].length == 8) {
+      rows[2].remove('Ñ');
     }
     final pressedKeys = ref.watch(
       keyboardProvider(gameId).select((s) => s.pressedKeys),
@@ -36,14 +38,12 @@ class KeyboardWidget extends ConsumerWidget {
         child: SizedBox(
           width: keyWidth,
           height: double.infinity,
-          child: ElevatedButton(
+          child: KeyboardKeyWidget(
+            keyValue: key,
             onPressed: () =>
                 ref.read(keyboardProvider(gameId).notifier).pressKey(key, true),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: isPressed ? Colors.grey : null,
-              padding: EdgeInsets.zero,
-            ),
-            child: Text(key, style: const TextStyle(fontSize: 18)),
+            isPressed: isPressed,
+            color: AppTheme.backgroundColors[2],
           ),
         ),
       );
@@ -60,9 +60,19 @@ class KeyboardWidget extends ConsumerWidget {
     );
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: keyboardH,
       child: Container(
-        color: const Color.fromARGB(255, 200, 200, 200),
+        decoration: BoxDecoration(
+          // color: Colors.green,
+          gradient: LinearGradient(
+            colors: [
+              ...AppTheme.backgroundColors,
+              const Color.fromARGB(255, 0, 29, 61),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
@@ -70,65 +80,74 @@ class KeyboardWidget extends ConsumerWidget {
             const SizedBox(height: 8),
             Row(
               children: [
-                Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: undoButtonHeight,
-                    child: ElevatedButton(
-                      onPressed: () => ref
-                          .read(gameProvider(gameId).notifier)
-                          .incrementCell(-1),
-                      child: const Text("<"),
-                    ),
+                SizedBox(
+                  // width: double.infinity,
+                  height: undoButtonHeight,
+                  child: KeyboardKeyWidget(
+                    keyValue: "<",
+                    onPressed: () => ref
+                        .read(gameProvider(gameId).notifier)
+                        .incrementCell(-1),
+                    padding: padding + 10,
+                    endScale: 1.05,
+                    color: AppTheme.backgroundColors[2],
                   ),
                 ),
+                SizedBox(width: padding),
                 Expanded(
                   child: SizedBox(
                     width: double.infinity,
                     height: undoButtonHeight,
-                    child: ElevatedButton(
+                    child: KeyboardKeyWidget(
+                      keyValue: "Reset",
                       onPressed: () => ref
                           .read(keyboardProvider(gameId).notifier)
                           .resetPuzzle(),
-                      child: Text("Reset"),
+                      padding: padding + 10,
+                      endScale: 1.05,
+                      color: AppTheme.backgroundColors[2],
                     ),
                   ),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: undoButtonHeight,
-                    child: ElevatedButton.icon(
-                      onPressed: () => ref
-                          .read(keyboardProvider(gameId).notifier)
-                          .pressKey("", true),
-                      icon: const Icon(Icons.delete),
-                      label: const Text("Delete"),
-                    ),
+                SizedBox(width: padding),
+                SizedBox(
+                  // width: double.infinity,
+                  height: undoButtonHeight,
+                  child: KeyboardKeyWidget(
+                    keyValue: "Del",
+                    onPressed: () => ref
+                        .read(keyboardProvider(gameId).notifier)
+                        .pressKey("", true),
+                    padding: padding + 10,
+                    endScale: 1.05,
+                    color: AppTheme.backgroundColors[2],
                   ),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: undoButtonHeight,
-                    child: ElevatedButton.icon(
-                      onPressed: () =>
-                          ref.read(keyboardProvider(gameId).notifier).undo(),
-                      icon: const Icon(Icons.undo),
-                      label: const Text("Undo"),
-                    ),
+                SizedBox(width: padding),
+                SizedBox(
+                  // width: double.infinity,
+                  height: undoButtonHeight,
+                  child: KeyboardKeyWidget(
+                    keyValue: "Undo",
+                    onPressed: () =>
+                        ref.read(keyboardProvider(gameId).notifier).undo(),
+                    padding: padding + 10,
+                    endScale: 1.05,
+                    color: AppTheme.backgroundColors[2],
                   ),
                 ),
-                Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: undoButtonHeight,
-                    child: ElevatedButton(
-                      onPressed: () => ref
-                          .read(gameProvider(gameId).notifier)
-                          .incrementCell(1),
-                      child: const Text(">"),
-                    ),
+                SizedBox(width: padding),
+                SizedBox(
+                  // width: double.infinity,
+                  height: undoButtonHeight,
+                  child: KeyboardKeyWidget(
+                    keyValue: ">",
+                    onPressed: () => ref
+                        .read(gameProvider(gameId).notifier)
+                        .incrementCell(1),
+                    padding: padding + 10,
+                    endScale: 1.05,
+                    color: AppTheme.backgroundColors[2],
                   ),
                 ),
               ],

@@ -25,11 +25,13 @@ class DictionaryPopoverWidget extends ConsumerWidget {
         insetPadding -
         decorationHeight;
     int i = selectedIdx;
-    while (i > 0 && cells[i].row == cell.row) {
-      i--;
-    }
 
-    i = selectedIdx;
+    // Removed this section because it seemed redundant
+    // while (i > 0 && cells[i].row == cell.row) {
+    //   i--;
+    // }
+
+    // i = selectedIdx;
     while (!cells[i].isException && i >= 0) {
       i--;
     }
@@ -64,19 +66,28 @@ class DictionaryPopoverWidget extends ConsumerWidget {
         insetPadding;
 
     return Positioned(
-      top: yPosition - scrollController.offset,
-      left: xPosition,
-      child: Container(
-        width: (containerWidth + padding) * word.length - padding,
-        height: containerHeight * 1.25,
-        color: Colors.blueAccent,
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: newWords.map((word) {
-                return SizedBox(
-                  height: containerHeight,
-                  child: ElevatedButton(
+      // top: yPosition - scrollController.offset,
+      // left: xPosition,
+      bottom: keyboardH,
+      left: 0,
+      right: 0,
+      child: Scrollbar(
+        controller: scrollController,
+        interactive: true,
+        trackVisibility: true,
+        thumbVisibility: true,
+        child: Container(
+          width: (containerWidth + padding) * word.length - padding,
+          height: containerHeight * 2,
+          color: Colors.black,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            primary: true,
+            child: Row(
+              children: [
+                ...(newWords.map((word) {
+                  return DictionaryPopoverSuggestionWidget(
+                    text: word,
                     onPressed: () {
                       provider.saveHistory();
                       var curWord = word.toUpperCase().split("");
@@ -93,21 +104,9 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                         keyboard.pressKey(letter, false);
                       }
                     },
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        word,
-                        style: TextStyle(fontSize: 18, color: Colors.black),
-                      ),
-                    ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList()),
+              ],
             ),
           ),
         ),
