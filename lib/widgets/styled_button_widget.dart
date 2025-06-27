@@ -1,30 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
+import 'package:flutter/services.dart';
 
-class DictionaryPopoverSuggestionWidget extends ConsumerStatefulWidget {
-  final String text;
+class StyledButtonWidget extends ConsumerStatefulWidget {
+  final String value;
+  final Color color;
+  final double padding;
+  final double endScale;
+  final double marginHorizontal;
+  final double marginVertical;
   final Function onPressed;
-  const DictionaryPopoverSuggestionWidget({
+
+  const StyledButtonWidget({
     super.key,
-    required this.text,
-    required this.onPressed,
+    required this.value,
+
+    this.onPressed = _defaultOnPressed,
+    this.endScale = 1.1,
+    this.marginHorizontal = 0,
+    this.marginVertical = 0,
+    this.padding = 5.0,
+    this.color = Colors.green,
   });
 
   @override
-  ConsumerState<DictionaryPopoverSuggestionWidget> createState() =>
-      _DictionaryPopoverSuggestionWidgetState();
+  ConsumerState<StyledButtonWidget> createState() => _StyledButtonWidgetState();
+
+  static void _defaultOnPressed() {
+    return;
+  }
 }
 
-class _DictionaryPopoverSuggestionWidgetState
-    extends ConsumerState<DictionaryPopoverSuggestionWidget>
+class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
-  late final Animation<double> _alphaColorAnimation;
-
-  // final _buttonWidth = screenW * (2 / 3);
-  late final List<Color> gradientColor;
+  late final Animation<double> _scaleAnimation;
 
   @override
   void initState() {
@@ -33,8 +44,7 @@ class _DictionaryPopoverSuggestionWidgetState
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-
-    _alphaColorAnimation = Tween(begin: 50.0, end: 75.0).animate(
+    _scaleAnimation = Tween(begin: 1.0, end: widget.endScale).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
   }
@@ -71,28 +81,24 @@ class _DictionaryPopoverSuggestionWidgetState
           onEnter: _onEnter,
           onExit: _onExit,
           child: GestureDetector(
-            onTapUp: _onTapUp,
             onTapDown: _onTapDown,
+            onTapUp: _onTapUp,
             child: Container(
-              height: containerHeight,
-              margin: EdgeInsets.all(3),
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: EdgeInsets.all(widget.padding),
+              margin: EdgeInsets.symmetric(
+                vertical: widget.marginVertical,
+                horizontal: widget.marginHorizontal,
+              ),
               decoration: BoxDecoration(
-                border: BoxBorder.all(color: AppTheme.logoGreen, width: 1),
-                color: AppTheme.logoGreen.withAlpha(
-                  _alphaColorAnimation.value.toInt(),
+                color: widget.color.withAlpha(
+                  (50 * _scaleAnimation.value * _scaleAnimation.value).toInt(),
                 ),
+                border: Border.all(color: widget.color, width: 1),
               ),
               child: Center(
                 child: Text(
-                  widget.text,
-                  style: TextStyle(
-                    color: AppTheme.logoGreen,
-                    fontSize: 15,
-                    shadows: [
-                      Shadow(color: AppTheme.logoGreen, blurRadius: 10),
-                    ],
-                  ),
+                  widget.value,
+                  style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
               ),
             ),

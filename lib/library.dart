@@ -20,7 +20,7 @@ export 'logic/game_setup.dart';
 export 'logic/quote_library.dart';
 export 'logic/pattern_map.dart';
 
-export 'widgets/aristocrat_grid_widget.dart';
+export 'widgets/cryptogram_grid_widget.dart';
 export 'widgets/cell_widget.dart';
 export 'widgets/keyboard_widget.dart';
 export 'widgets/home_button_widget.dart';
@@ -37,6 +37,7 @@ export 'widgets/dictionary_popover_suggestion_widget.dart';
 export 'widgets/heading_widget.dart';
 export 'widgets/keyboard_key_widget.dart';
 export 'widgets/game_page_header_widget.dart';
+export 'widgets/styled_button_widget.dart';
 
 export 'painters/vertical_text.dart';
 

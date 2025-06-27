@@ -43,9 +43,12 @@ class GamePage extends ConsumerWidget {
           ),
           actions: [
             if (isCorrect && !showComplete)
-              ElevatedButton(
+              StyledButtonWidget(
+                value: "Continue",
                 onPressed: () => provider.setPopup(true),
-                child: Text("Continue"),
+                marginHorizontal: 5,
+                marginVertical: 10,
+                endScale: 1.5,
               ),
           ],
         ),
@@ -80,12 +83,13 @@ class GamePage extends ConsumerWidget {
                     ],
                   ),
                 ),
-                AnimatedBuilder(
-                  animation: scrollController,
-                  builder: (context, child) {
-                    return DictionaryPopoverWidget(gameKey: key);
-                  },
-                ),
+                if (gameId == "Aristocrats")
+                  AnimatedBuilder(
+                    animation: scrollController,
+                    builder: (context, child) {
+                      return DictionaryPopoverWidget(gameKey: key);
+                    },
+                  ),
                 Positioned(
                   top: 0,
                   left: 0,
@@ -110,52 +114,64 @@ class GamePage extends ConsumerWidget {
                 child: Center(
                   child: Container(
                     width: 250,
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 20,
+                    ),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.black,
+                      border: Border.all(color: AppTheme.logoGreen, width: 1),
+                      boxShadow: [
+                        BoxShadow(color: AppTheme.logoGreen, blurRadius: 5),
+                      ],
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text(
                           'Congratulations!',
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: AppTheme.logoGreen,
+                          ),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: padding),
-                        ElevatedButton(
+                        const SizedBox(height: 20),
+                        StyledButtonWidget(
+                          value: "Play Again",
                           onPressed: () {
                             Navigator.of(context).pop();
                             provider.destroy();
                           },
-                          child: Text("Play Again"),
+                          endScale: 1.5,
                         ),
-                        const SizedBox(height: padding),
-                        ElevatedButton(
+                        const SizedBox(height: 20),
+                        StyledButtonWidget(
+                          value: "View Quote",
                           onPressed: () {
                             provider.setPopup(false);
                           },
-                          child: const Text('View Quote'),
+                          endScale: 1.5,
                         ),
-                        const SizedBox(height: padding),
-                        ElevatedButton(
+                        const SizedBox(height: 20),
+                        StyledButtonWidget(
+                          value: "Save Quote",
                           onPressed: () {
                             Null;
                           },
-                          child: const Text('Save Quote'),
+                          endScale: 1.5,
                         ),
-                        const SizedBox(height: padding),
-                        ElevatedButton(
+                        const SizedBox(height: 20),
+                        StyledButtonWidget(
+                          value: "Home",
                           onPressed: () {
                             Navigator.of(
                               context,
                             ).popUntil((route) => route.isFirst);
                             provider.destroy();
                           },
-                          child: Text("Home"),
+                          endScale: 1.5,
                         ),
-                        const SizedBox(height: padding),
                       ],
                     ),
                   ),
