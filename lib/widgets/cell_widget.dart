@@ -12,7 +12,7 @@ class CellWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cells = ref.watch(gameProvider(gameId).select((s) => s.cells));
     //calculate colors
-    var cellColor = AppTheme.logoGreen.withAlpha(100);
+    var cellColor = AppTheme.logoGreen.withAlpha(50);
     var textColor = Colors.white;
     List<BoxShadow> shadows = [];
 

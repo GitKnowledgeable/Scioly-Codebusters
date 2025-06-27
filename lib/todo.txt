@@ -1,0 +1,13 @@
+v.2.0.0
+1. Make styling for game page better
+2. Add logs (quote, stars, time) for quotes solved + favorite quotes 
+3. Display stars + time on solve
+4. Sound effects + background lofi music (changeable in settings)
+
+-- video showcasing features --
+
+v.2.1.0
+5. Memory game for Baconian, Morse code, and Dictionary
+6. Test out Hive capabilties
+
+-- Youtube videos after 2.1 --
