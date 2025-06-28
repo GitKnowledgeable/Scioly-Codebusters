@@ -1,0 +1,43 @@
+v.2.0.0
+1. Make styling for game page better - Manoj
+    - Highlight the mistakes red
+    - Display quotes need to look better + Author
+    - Continue button (reconsideration)
+2. Add logs (gameId, quote, stars, time) (perfect solves can be highlighted) for quotes solved + favorite quotes - Suvan
+3. Display stars + time on solve - Manoj
+4. Sound effects + background lofi music (changeable in settings) - Manoj
+5. Spanish Dictionary - Add suggestions for xenocrypt - Suvan
+6. Dictionary Suggestions: - Suvan (manoj after second dictionary added)
+    - DEBUG Undo
+    - Contractions fix
+    - Secondary dictionary with keywords rather than all words (toggle in view dictionary)
+    - Toggle switch implementation for the two different dictionaries - Manoj
+7. Connect the quotes files - Manoj
+    - Add the functions for getting the quotes
+    - Add more quotes to the file + fix errors
+    - Static methods
+8. Stats - Manoj
+    - Add total solved
+10. How to play: - Suvan
+    - Link video AND detailed infographic
+11. ScrollContainer bugs when scrolling to end - Suvan
+    
+
+-- video showcasing features --
+
+v.2.1.0
+1. Memory game for Baconian, Morse code, and Dictionary
+    - Settings for games
+2. Dictionary Suggestion: 
+    - Patristocrat, after placing spaces, finds suggestions between spaces AND it goes all the way, any number of words between spaces
+3. [consideration]: Saving unsolved quotes for later to move on for now
+4. Test out Hive capabilties
+5. Add/Delete spaces button for patristocrat
+
+-- Youtube videos after 2.1 --
+
+v.2.2.0
+1. Puzzle Rush
+    - 5 minutes to solve as many cryptograms as you can
+    - Customizable (time)
+2. Add words to dictionary or create dictionary

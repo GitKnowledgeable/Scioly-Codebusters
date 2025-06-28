@@ -34,6 +34,32 @@ class _TimerWidgetState extends ConsumerState<TimerWidget> {
   @override
   Widget build(BuildContext context) {
     final time = ref.watch(timerProvider(widget.timerId));
-    return Text('$time s', style: const TextStyle(fontSize: 40));
+    return Container(
+      decoration: BoxDecoration(
+        color: AppTheme.logoGreen.withAlpha(50),
+        border: Border.all(color: AppTheme.logoGreen, width: 1),
+      ),
+      width: 100,
+      padding: EdgeInsets.all(padding),
+      child: Center(
+        child: Text(
+          '${time}s',
+          style: const TextStyle(
+            color: AppTheme.logoGreen,
+            fontSize: 30,
+            fontFamily: 'JetBrainsMonoBold',
+            shadows: [Shadow(color: AppTheme.logoGreen, blurRadius: 10)],
+          ),
+        ),
+      ),
+    );
+    //   return Text(
+    //     '$time s',
+    //     style: const TextStyle(
+    //       fontSize: 40,
+    //       color: AppTheme.logoGreen,
+    //       fontFamily: 'JetBrainsMonoBold',
+    //     ),
+    //   );
   }
 }

@@ -13,17 +13,18 @@ const decorationHeight = containerWidth * 0.7;
 const padding = 4.0;
 var screenW = LayoutConfig.width;
 var screenH = LayoutConfig.height;
-var maxLength = (screenW * 0.9) - insetPadding * 2;
+double get maxLength => (screenW * 0.9) - insetPadding * 2;
 //styling for keyboard
 const double spacing = 4;
 const double undoButtonHeight = 50;
 const double horizontalBuffer = 20;
-final safeWidth = screenW - horizontalBuffer;
+double get safeWidth => screenW - horizontalBuffer;
 final maxKeysInRow = 10;
-final keyWidth = (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
+double get keyWidth =>
+    (safeWidth - (maxKeysInRow - 1) * spacing) / maxKeysInRow;
 final keyboardH = screenH * 0.25; // Height of the keyboard widget
 //panel height for timer etc.
-const double panelHeight = 50.0;
+const double panelHeight = 60.0;
 
 /// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
 final appThemeProvider = AppTheme.theme;
@@ -36,9 +37,9 @@ class AppTheme {
   static const Color appBarBackground = Colors.transparent;
   static const Color surface = Color(0xFFF5F5F5);
   static const Color accent = Color(0xFFEF5350); // Softer red
-  static const Color keyboardKey = Color(0xFFFAFAFA);
-  static const Color keyboardKeyText = Colors.black87;
   static const Color logoGreen = Color(0xFF00FF41); // Also used for logo
+  static const Color keyboardKey = Color(0xFFFAFAFA);
+  static const Color keyboardKeyText = logoGreen;
 
   static const backgroundColors = [
     Color(0xFF0a0a0a),
@@ -57,17 +58,25 @@ class AppTheme {
     headlineLarge: TextStyle(
       fontSize: 32,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
-      fontFamily: 'Roboto',
+      color: logoGreen,
+      fontFamily: 'JetBrainsMono',
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: logoGreen,
+      fontFamily: 'JetBrainsMono',
     ),
     headlineSmall: TextStyle(
-      fontSize: 20,
+      fontSize: 15,
       fontWeight: FontWeight.w600,
-      color: Colors.black87,
+      color: Colors.grey.shade700,
+      wordSpacing: 5,
+      fontFamily: 'JetBrainsMono',
     ),
     bodyLarge: TextStyle(
       fontSize: 16,
-      fontFamily: 'Roboto',
+      fontFamily: 'JetBrainsMono',
       color: Colors.black87,
     ),
     labelLarge: TextStyle(fontSize: 14, color: primaryDark),
@@ -77,6 +86,7 @@ class AppTheme {
     useMaterial3: true,
     scaffoldBackgroundColor: background,
     primaryColor: primary,
+    fontFamily: 'JetBrainsMono',
     colorScheme: ColorScheme.light(
       primary: primary,
       secondary: accent,
@@ -154,4 +164,15 @@ class AppTheme {
     foregroundColor: primary,
     textStyle: const TextStyle(fontWeight: FontWeight.bold),
   );
+}
+
+String toTitleCase(String text) {
+  if (text.isEmpty) return text;
+  return text
+      .split(' ')
+      .map((word) {
+        if (word.isEmpty) return word;
+        return word[0].toUpperCase() + word.substring(1).toLowerCase();
+      })
+      .join(' ');
 }

@@ -1,6 +1,5 @@
 final List<String> wordList =
-    """
-a
+    """a
 ability
 able
 about
@@ -999,6 +998,5 @@ yet
 you
 young
 your
-yourself
-"""
+yourself"""
         .split('\n');

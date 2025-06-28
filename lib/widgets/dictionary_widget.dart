@@ -4,42 +4,80 @@ import 'package:projects/library.dart';
 // Assume PatternMap and getPatternKey are defined elsewhere and imported
 
 class DictionaryWidget extends StatelessWidget {
-  const DictionaryWidget({super.key});
-
+  DictionaryWidget({super.key});
+  final _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     final entries = dictionary.map.entries.toList();
+    final colors = [
+      AppTheme.logoGreen,
+      Colors.yellowAccent,
+      Colors.blueAccent,
+      Colors.redAccent,
+    ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Pattern Map')),
-      body: Scrollbar(
-        child: ListView.separated(
-          padding: const EdgeInsets.all(16),
-          itemCount: entries.length,
-          separatorBuilder: (_, _) => const SizedBox(height: 24),
-          itemBuilder: (context, index) {
-            final entry = entries[index];
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  entry.key,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+    return Container(
+      decoration: AppTheme.backgroundGradient,
+      child: Scaffold(
+        backgroundColor: AppTheme.appBarBackground,
+        appBar: AppBar(
+          title: const Text('Pattern Map'),
+          backgroundColor: AppTheme.appBarBackground,
+        ),
+        body: Scrollbar(
+          controller: _scrollController,
+          child: ListView.separated(
+            controller: _scrollController,
+            padding: const EdgeInsets.all(16),
+            itemCount: entries.length,
+            separatorBuilder: (_, _) => const SizedBox(height: 24),
+            itemBuilder: (context, index) {
+              final entry = entries[index];
+              final curColor = colors[index % colors.length];
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  border: Border.all(color: curColor, width: 2),
+                  boxShadow: [BoxShadow(color: curColor, blurRadius: 10)],
                 ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 4,
-                  children: entry.value
-                      .map((word) => Chip(label: Text(word)))
-                      .toList(),
+                padding: EdgeInsets.all(insetPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HeadingWidget(
+                      neonColor: curColor,
+                      title: entry.key,
+                      num: (index + 1).toString(),
+                      fontSize: 25,
+                    ),
+                    const SizedBox(height: padding + 10),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 4,
+                      children: entry.value
+                          .map(
+                            (word) => Container(
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                border: Border.all(color: curColor, width: 2),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                vertical: 5,
+                                horizontal: 20,
+                              ),
+                              child: Text(
+                                word,
+                                style: TextStyle(color: curColor),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
                 ),
-              ],
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

@@ -21,7 +21,9 @@ class VerticalText extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     int greenColor = 50;
-    int increment = ((255 - greenColor) / text.length).toInt();
+    int increment = text.isNotEmpty
+        ? ((255 - greenColor) / text.length).toInt()
+        : 0;
     Color curColor = Color.fromARGB(
       255,
       0,

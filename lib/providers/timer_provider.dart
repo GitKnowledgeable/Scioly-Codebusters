@@ -44,6 +44,9 @@ class TimerNotifier extends FamilyNotifier<int, String> {
     _tick?.cancel();
     _tick = Timer.periodic(const Duration(seconds: 1), (_) {
       state = _stopwatch.elapsed.inSeconds;
+      if (state > 999) {
+        state = 999;
+      }
     });
   }
 

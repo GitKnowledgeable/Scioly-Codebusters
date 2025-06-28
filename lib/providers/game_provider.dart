@@ -134,7 +134,11 @@ class GameProvider extends FamilyNotifier<Game, String> {
     double time = ref.read(timerProvider(arg).notifier).getTime().toDouble();
     final statsNotifier = ref.read(gameModeStatsProvider(arg).notifier);
     statsNotifier.addSolve(time);
-    state = state.copyWith(isCorrect: true, showComplete: true);
+    state = state.copyWith(
+      isCorrect: true,
+      showComplete: true,
+      showCorrect: true,
+    );
   }
 
   void setPopup(bool value) {

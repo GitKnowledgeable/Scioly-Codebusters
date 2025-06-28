@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:projects/library.dart';
 
 part '../models/stats.g.dart';
 
@@ -26,71 +27,54 @@ class StatsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Solve Statistics - $widgetKey')),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Table(
-            border: TableBorder.all(color: Colors.grey),
-            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-            children: [
-              // Header row
-              TableRow(
-                children: [
-                  const SizedBox(), // Empty top-left cell
-                  _buildHeaderCell('All Time'),
-                  _buildHeaderCell('Last 10'),
-                  _buildHeaderCell('Previous 10'),
-                ],
-              ),
-              // Fastest row
-              TableRow(
-                children: [
-                  _buildRowHeaderCell('Fastest'),
-                  _buildDataCell(fastestAllTime),
-                  _buildDataCell(fastestLast10),
-                  _buildDataCell(fastestPrevious10),
-                ],
-              ),
-              // Average row
-              TableRow(
-                children: [
-                  _buildRowHeaderCell('Average'),
-                  _buildDataCell(averageAllTime),
-                  _buildDataCell(averageLast10),
-                  _buildDataCell(averagePrevious10),
-                ],
-              ),
-            ],
+    return Container(
+      decoration: AppTheme.backgroundGradient,
+      child: Scaffold(
+        backgroundColor: AppTheme.appBarBackground,
+        appBar: AppBar(backgroundColor: AppTheme.appBarBackground),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(insetPadding),
+            child: Column(
+              children: [
+                Text(
+                  "Solve Statistics - $widgetKey",
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    shadows: [Shadow(color: AppTheme.logoGreen, blurRadius: 5)],
+                  ),
+                ),
+                const SizedBox(height: padding + 10),
+                StatBoxWidget(
+                  title: "All Time",
+                  num: "01",
+                  neonColor: Colors.pinkAccent,
+                  fastest: fastestAllTime.toStringAsFixed(2),
+                  average: averageAllTime.toStringAsFixed(2),
+                ),
+                const SizedBox(height: padding + 10),
+
+                StatBoxWidget(
+                  title: "Last 10",
+                  num: "02",
+                  neonColor: Colors.yellowAccent,
+                  fastest: fastestLast10.toStringAsFixed(2),
+                  average: averageLast10.toStringAsFixed(2),
+                ),
+                const SizedBox(height: padding + 10),
+
+                StatBoxWidget(
+                  title: "Previous 10",
+                  num: "03",
+                  neonColor: Colors.lightBlueAccent,
+                  fastest: fastestPrevious10.toStringAsFixed(2),
+                  average: averagePrevious10.toStringAsFixed(2),
+                ),
+                const SizedBox(height: padding + 10),
+              ],
+            ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildHeaderCell(String text) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-
-  Widget _buildRowHeaderCell(String text) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
-    );
-  }
-
-  Widget _buildDataCell(double time) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text('${time.toStringAsFixed(2)}s', textAlign: TextAlign.center),
     );
   }
 }

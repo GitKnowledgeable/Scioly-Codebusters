@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                       const SizedBox(height: 25),
                       HomeButtonWidget(
                         btnText: "View Dictionary",
-                        neonColor: Colors.greenAccent,
+                        neonColor: AppTheme.logoGreen,
                         num: "04",
                         onPressed: () {
                           Navigator.push(

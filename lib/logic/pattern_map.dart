@@ -1,6 +1,7 @@
 import 'dart:collection';
 
-// Function to generate a pattern key for a word (e.g., 'mom' -> 'ABA')
+import 'package:projects/library.dart';
+
 String getPatternKey(String word) {
   Map<String, String> letterMap = {};
   int nextCharCode = 'A'.codeUnitAt(0);
@@ -15,7 +16,39 @@ String getPatternKey(String word) {
   return pattern.toString();
 }
 
-// SortedMap by key length, then lexicographically
+List<String> getSuggestedWords(List<Cell> cells, int selectedIdx) {
+  int wordStart = getWordStart(selectedIdx, cells);
+  String typed = "";
+  for (int j = wordStart; !cells[j].isException; j++) {
+    typed += cells[j].text == "" ? "*" : cells[j].text;
+  }
+  final words = dictionary.map[getPatternKey(getWord(wordStart, cells))] ?? [];
+  final newWords = [...words];
+  for (String w in words) {
+    for (int j = 0; j < typed.length; j++) {
+      if (typed[j] != "*" && w[j].toUpperCase() != typed[j]) {
+        newWords.remove(w);
+      }
+    }
+  }
+  return newWords;
+}
+
+int getWordStart(int i, List<Cell> cells) {
+  while (!cells[i].isException && i >= 0) {
+    i--;
+  }
+  return i + 1;
+}
+
+String getWord(int wordStart, List<Cell> cells) {
+  String word = "";
+  for (int j = wordStart; !cells[j].isException; j++) {
+    word += cells[j].plainText;
+  }
+  return word;
+}
+
 class PatternMap {
   final SplayTreeMap<String, List<String>> _map = SplayTreeMap(
     (a, b) =>

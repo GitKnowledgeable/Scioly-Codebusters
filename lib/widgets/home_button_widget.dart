@@ -8,13 +8,18 @@ class HomeButtonWidget extends ConsumerStatefulWidget {
   final String num;
   final Color neonColor;
   final Function onPressed;
+
+  final int initialAlpha;
+  final int finalAlpha;
   const HomeButtonWidget({
-    Key? key,
+    super.key,
     required this.btnText,
     required this.neonColor,
-    required this.num,
     required this.onPressed,
-  }) : super(key: key);
+    this.num = "",
+    this.initialAlpha = 10,
+    this.finalAlpha = 255,
+  });
 
   @override
   ConsumerState<HomeButtonWidget> createState() => _HomeButtonWidgetState();
@@ -27,7 +32,8 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
   late final Animation<Alignment> _rightAlignmentAnimation;
   late final Animation<double> _glowAnimation;
 
-  final _buttonWidth = LayoutConfig.width * (2 / 3);
+  final _buttonWidth = screenW * (2 / 3);
+  late final List<Color> gradientColor;
 
   @override
   void initState() {
@@ -50,6 +56,11 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
     _glowAnimation = Tween(begin: 0.0, end: 10.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.linear),
     );
+
+    gradientColor = [
+      widget.neonColor.withAlpha(widget.finalAlpha),
+      widget.neonColor.withAlpha(widget.initialAlpha),
+    ];
   }
 
   @override
@@ -101,7 +112,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: _leftAlignmentAnimation.value,
-                  colors: [widget.neonColor, Colors.transparent],
+                  colors: gradientColor,
                   stops: [1, 1],
                 ),
                 border: Border.all(color: widget.neonColor, width: 2),
@@ -111,7 +122,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                   gradient: LinearGradient(
                     begin: Alignment.centerRight,
                     end: _rightAlignmentAnimation.value,
-                    colors: [widget.neonColor, Colors.transparent],
+                    colors: gradientColor,
                     stops: [1, 1],
                   ),
                 ),
@@ -153,7 +164,7 @@ class _HomeButtonWidgetState extends ConsumerState<HomeButtonWidget>
                         ),
                       ),
                       Text(
-                        '>',
+                        widget.num != "" ? '>' : '',
                         style: TextStyle(
                           fontFamily: 'JetBrainsMono',
                           fontSize: 15,
