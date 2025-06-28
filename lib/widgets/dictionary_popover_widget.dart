@@ -13,7 +13,7 @@ class DictionaryPopoverWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final gameKey = "$gameId|${gameMode.name}";
+    final gameKey = "$gameId (${toTitleCase(gameMode.name)})";
     final keyboard = ref.read(keyboardProvider(gameKey).notifier);
     final provider = ref.read(gameProvider(gameKey).notifier);
     final scrollController = ref.watch(scrollProvider(gameKey));
