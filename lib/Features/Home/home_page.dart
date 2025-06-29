@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LayoutConfig.init(context);
+    GameSetup.init(context);
 
     return Container(
       decoration: AppTheme.backgroundGradient,
@@ -116,7 +116,7 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DictionaryWidget(),
+                              builder: (context) => DictionaryPage(),
                             ),
                           );
                         },

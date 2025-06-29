@@ -20,10 +20,7 @@ class KeyboardWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gameState = ref.watch(gameProvider(gameKey));
-    if (gameState.cells.isEmpty) {
-      // Or whatever condition means "empty"
-      return const SizedBox.shrink();
-    }
+    if (gameState.cells.isEmpty) return const SizedBox.shrink();
     if (language == Language.spanish && rows[2].length == 7) {
       rows[2].insert(6, 'Ñ');
     } else if (language == Language.english && rows[2].length == 8) {
@@ -69,7 +66,6 @@ class KeyboardWidget extends ConsumerWidget {
       height: keyboardH,
       child: Container(
         decoration: BoxDecoration(
-          // color: Colors.green,
           gradient: LinearGradient(
             colors: [
               ...AppTheme.backgroundColors,
@@ -116,7 +112,6 @@ class KeyboardWidget extends ConsumerWidget {
                 ),
                 SizedBox(width: padding),
                 SizedBox(
-                  // width: double.infinity,
                   height: undoButtonHeight,
                   child: KeyboardKeyWidget(
                     keyValue: "Del",

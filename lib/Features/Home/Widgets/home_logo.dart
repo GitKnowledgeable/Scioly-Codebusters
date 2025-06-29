@@ -4,7 +4,7 @@ import 'package:projects/library.dart';
 class HomeLogo extends StatelessWidget {
   HomeLogo({super.key});
 
-  final width = LayoutConfig.width * (1 / 2);
+  final width = GameSetup.width * (1 / 2);
   @override
   Widget build(BuildContext context) {
     return Container(

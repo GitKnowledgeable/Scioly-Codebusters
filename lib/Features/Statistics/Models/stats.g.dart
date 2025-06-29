@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../widgets/stats_grid_widget.dart';
+part of '../stats_page.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

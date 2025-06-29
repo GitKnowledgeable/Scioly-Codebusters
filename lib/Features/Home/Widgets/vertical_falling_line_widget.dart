@@ -35,9 +35,9 @@ class _VerticalFallingLineState extends ConsumerState<VerticalFallingLine>
     text = wordList[random.nextInt(wordList.length)];
 
     y = (-(fontsize + 5) * text.length) - (random.nextDouble() * textBuffer);
-    x = random.nextDouble() * LayoutConfig.width;
+    x = random.nextDouble() * GameSetup.width;
 
-    _fallingAnimation = Tween(begin: y, end: LayoutConfig.height).animate(
+    _fallingAnimation = Tween(begin: y, end: GameSetup.height).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.linear),
     );
 

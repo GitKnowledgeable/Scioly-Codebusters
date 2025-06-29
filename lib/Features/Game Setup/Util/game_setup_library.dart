@@ -1,6 +1,16 @@
 import 'package:projects/library.dart';
+import 'package:flutter/material.dart';
 
 class GameSetup {
+  static double width = 0;
+  static double height = 0;
+
+  static void init(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    width = size.width;
+    height = size.height;
+  }
+
   static Game buildCryptogram(
     GameMode gameMode,
     Language language,
@@ -8,7 +18,6 @@ class GameSetup {
   ) {
     List<Cell> newCells = [];
     Quote quote = QuoteLibrary.getNewQuote(language);
-    //add cells
     for (String i in quote.plainText.split('')) {
       if (QuoteLibrary.isException(i, language) && gameId != "Patristocrat") {
         newCells.add(Cell(text: i, cipher: i, plainText: i, isException: true));

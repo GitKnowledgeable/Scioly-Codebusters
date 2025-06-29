@@ -11,8 +11,9 @@ const containerWidth = 22.0;
 const containerHeight = containerWidth * 1.25;
 const decorationHeight = containerWidth * 0.7;
 const padding = 4.0;
-final screenW = LayoutConfig.width;
-final screenH = LayoutConfig.height;
+// might need to change if screen size changes (rotation)
+final screenW = GameSetup.width;
+final screenH = GameSetup.height;
 double get maxLength => (screenW * 0.9) - insetPadding * 2;
 //styling for keyboard
 const double spacing = 4;

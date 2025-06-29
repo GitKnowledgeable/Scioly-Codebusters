@@ -93,7 +93,7 @@ class GamePageSetup extends ConsumerWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => StatsGrid(
+                                    builder: (context) => StatsPage(
                                       widgetKey: key,
                                       fastestAllTime: stats.fastestSolve,
                                       averageAllTime: stats.averageSolve,

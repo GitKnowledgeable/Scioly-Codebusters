@@ -20,7 +20,7 @@ v.2.0.0
     - Add total solved
 10. How to play: - Suvan
     - Link video AND detailed infographic
-11. ScrollContainer bugs when scrolling to end - Suvan
+11. ScrollContainer bugs when scrolling to end (check if dictionary popover is present) - Suvan
     
 
 -- video showcasing features --

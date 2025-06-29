@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projects/library.dart';
 
-// Assume PatternMap and getPatternKey are defined elsewhere and imported
-
-class DictionaryWidget extends StatelessWidget {
-  DictionaryWidget({super.key});
+class DictionaryPage extends StatelessWidget {
+  DictionaryPage({super.key});
   final _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {

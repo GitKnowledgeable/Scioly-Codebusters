@@ -120,15 +120,6 @@ class GameProvider extends FamilyNotifier<Game, String> {
     nextCell(-1);
   }
 
-  void hint() {
-    String letter = state.cells[state.selectedIdx].plainText;
-    ref.read(keyboardProvider(arg).notifier).pressKey(letter, true);
-  }
-
-  void saveHistory() {
-    state = state.copyWith(history: [...state.history, state.copyWith()]);
-  }
-
   void checkAnswer() {
     if (state.isCorrect) return;
     for (int i = 0; i < state.cells.length; i++) {
@@ -144,6 +135,15 @@ class GameProvider extends FamilyNotifier<Game, String> {
       showCorrect: true,
     );
     markCorrect();
+  }
+
+  void hint() {
+    String letter = state.cells[state.selectedIdx].plainText;
+    ref.read(keyboardProvider(arg).notifier).pressKey(letter, true);
+  }
+
+  void saveHistory() {
+    state = state.copyWith(history: [...state.history, state.copyWith()]);
   }
 
   void setPopup(bool value) {
@@ -163,7 +163,6 @@ class GameProvider extends FamilyNotifier<Game, String> {
 
   //timer widget uses in init state
   bool isCorrect() => state.isCorrect;
-  bool showCorrect() => state.showCorrect;
   int cellCount() => state.cells.length;
 
   /* for Patristocrats

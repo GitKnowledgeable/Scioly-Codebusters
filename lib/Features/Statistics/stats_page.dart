@@ -3,9 +3,9 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:projects/library.dart';
 
-part '../models/stats.g.dart';
+part 'Models/stats.g.dart';
 
-class StatsGrid extends StatelessWidget {
+class StatsPage extends StatelessWidget {
   final String widgetKey;
   final double fastestAllTime;
   final double averageAllTime;
@@ -14,7 +14,7 @@ class StatsGrid extends StatelessWidget {
   final double fastestPrevious10;
   final double averagePrevious10;
 
-  const StatsGrid({
+  const StatsPage({
     super.key,
     required this.widgetKey,
     required this.fastestAllTime,
