@@ -55,7 +55,6 @@ class _MatrixBackgroundWidgetState extends ConsumerState<MatrixBackgroundWidget>
 
   @override
   void dispose() {
-    print("MatrixBackgroundWidget disposed");
     _lineSpawnTimer?.cancel();
     routeObserver.unsubscribe(this);
     super.dispose();

@@ -23,103 +23,39 @@ class StatBoxWidget extends ConsumerStatefulWidget {
   ConsumerState<StatBoxWidget> createState() => _StatBoxWidgetState();
 }
 
-class _StatBoxWidgetState extends ConsumerState<StatBoxWidget>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _animationController;
-  late final Animation<double> _glowAnimation;
-  late final Animation<double> _scaleAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 200),
-      vsync: this,
-    );
-
-    _glowAnimation = Tween(begin: 5.0, end: 15.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
-    );
-    _scaleAnimation = Tween(begin: 1.0, end: 1.01).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
-    );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  void _onEnter(PointerEnterEvent details) {
-    _animationController.forward();
-  }
-
-  void _onExit(PointerExitEvent? details) {
-    _animationController.reverse();
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    _animationController.reverse();
-  }
-
-  void _onTapDown(TapDownDetails details) {
-    _animationController.forward();
-  }
-
+class _StatBoxWidgetState extends ConsumerState<StatBoxWidget> {
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animationController,
-      builder: (context, child) {
-        return MouseRegion(
-          onEnter: _onEnter,
-          onExit: _onExit,
-          child: GestureDetector(
-            onTapDown: _onTapDown,
-            onTapUp: _onTapUp,
-            child: Transform.scale(
-              scale: _scaleAnimation.value,
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  border: Border.all(color: widget.neonColor, width: 2),
-                  color: Colors.black,
-                  boxShadow: [
-                    BoxShadow(
-                      color: widget.neonColor,
-                      blurRadius: _glowAnimation.value,
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(insetPadding),
-                child: Column(
-                  children: [
-                    HeadingWidget(
-                      neonColor: widget.neonColor,
-                      title: widget.title,
-                      num: widget.num,
-                    ),
-                    // padding
-                    const SizedBox(height: 20),
-
-                    StatRowWidget(
-                      title: "Fastest",
-                      neonColor: widget.neonColor,
-                      value: widget.fastest,
-                    ),
-                    StatRowWidget(
-                      title: "Average",
-                      neonColor: widget.neonColor,
-                      value: widget.average,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(color: widget.neonColor, width: 2),
+        color: Colors.black,
+        boxShadow: [BoxShadow(color: widget.neonColor, blurRadius: 5.0)],
+      ),
+      padding: EdgeInsets.all(insetPadding),
+      child: Column(
+        children: [
+          HeadingWidget(
+            neonColor: widget.neonColor,
+            title: widget.title,
+            num: widget.num,
           ),
-        );
-      },
+          // padding
+          const SizedBox(height: 20),
+
+          StatRowWidget(
+            title: "Fastest",
+            neonColor: widget.neonColor,
+            value: widget.fastest,
+          ),
+          StatRowWidget(
+            title: "Average",
+            neonColor: widget.neonColor,
+            value: widget.average,
+          ),
+        ],
+      ),
     );
   }
 }
