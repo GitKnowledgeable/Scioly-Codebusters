@@ -48,7 +48,6 @@ class GamePage extends ConsumerWidget {
                 onPressed: () => provider.setPopup(true),
                 marginHorizontal: 5,
                 marginVertical: 10,
-                endScale: 1.5,
               ),
           ],
         ),
@@ -148,7 +147,6 @@ class GamePage extends ConsumerWidget {
                             Navigator.of(context).pop();
                             provider.destroy();
                           },
-                          endScale: 1.5,
                         ),
                         const SizedBox(height: 20),
                         StyledButtonWidget(
@@ -156,7 +154,6 @@ class GamePage extends ConsumerWidget {
                           onPressed: () {
                             provider.setPopup(false);
                           },
-                          endScale: 1.5,
                         ),
                         const SizedBox(height: 20),
                         StyledButtonWidget(
@@ -164,7 +161,6 @@ class GamePage extends ConsumerWidget {
                           onPressed: () {
                             Null;
                           },
-                          endScale: 1.5,
                         ),
                         const SizedBox(height: 20),
                         StyledButtonWidget(
@@ -175,7 +171,6 @@ class GamePage extends ConsumerWidget {
                             ).popUntil((route) => route.isFirst);
                             provider.destroy();
                           },
-                          endScale: 1.5,
                         ),
                       ],
                     ),

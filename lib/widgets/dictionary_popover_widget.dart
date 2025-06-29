@@ -43,8 +43,14 @@ class DictionaryPopoverWidget extends ConsumerWidget {
             child: Row(
               children: [
                 ...(newWords.map((word) {
-                  return DictionaryPopoverSuggestionWidget(
-                    text: word,
+                  return StyledButtonWidget(
+                    value: word,
+                    marginHorizontal: 3,
+                    marginVertical: 3,
+                    txtColor: AppTheme.logoGreen,
+                    paddingVertical: 0,
+                    height: containerHeight,
+                    addTextShadow: true,
                     onPressed: () {
                       keyboard.saveHistory();
                       var curWord = word.toUpperCase().split("");

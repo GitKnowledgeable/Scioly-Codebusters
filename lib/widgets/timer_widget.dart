@@ -53,13 +53,5 @@ class _TimerWidgetState extends ConsumerState<TimerWidget> {
         ),
       ),
     );
-    //   return Text(
-    //     '$time s',
-    //     style: const TextStyle(
-    //       fontSize: 40,
-    //       color: AppTheme.logoGreen,
-    //       fontFamily: 'JetBrainsMonoBold',
-    //     ),
-    //   );
   }
 }

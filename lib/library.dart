@@ -33,7 +33,6 @@ export 'widgets/stats_grid_widget.dart';
 export 'widgets/stat_box_widget.dart';
 export 'widgets/stat_row_widget.dart';
 export 'widgets/dictionary_popover_widget.dart';
-export 'widgets/dictionary_popover_suggestion_widget.dart';
 export 'widgets/heading_widget.dart';
 export 'widgets/keyboard_key_widget.dart';
 export 'widgets/game_page_header_widget.dart';
