@@ -4,10 +4,12 @@ import 'package:projects/library.dart';
 
 class DictionaryPopoverWidget extends ConsumerWidget {
   final String gameId;
+  final String dictionaryId;
   final GameMode gameMode;
   const DictionaryPopoverWidget({
     super.key,
     required this.gameId,
+    required this.dictionaryId,
     required this.gameMode,
   });
 
@@ -16,12 +18,13 @@ class DictionaryPopoverWidget extends ConsumerWidget {
     final gameKey = "$gameId (${toTitleCase(gameMode.name)})";
     final keyboard = ref.read(keyboardProvider(gameKey).notifier);
     final provider = ref.read(gameProvider(gameKey).notifier);
+    final patternMap = ref.watch(patternMapProvider(dictionaryId)).map;
     final scrollController = ref.watch(scrollProvider(gameKey));
     final selectedIdx = ref.watch(
       gameProvider(gameKey).select((s) => s.selectedIdx),
     );
     final cells = ref.watch(gameProvider(gameKey).select((s) => s.cells));
-    final newWords = getSuggestedWords(cells, selectedIdx);
+    final newWords = getSuggestedWords(cells, selectedIdx, patternMap);
     int wordStart = getWordStart(selectedIdx, cells);
 
     Color suggestionColor = Colors.blueAccent;
@@ -56,7 +59,10 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                     addTextShadow: true,
                     onPressed: () {
                       keyboard.saveHistory();
-                      var curWord = word.toUpperCase().split("");
+                      var curWord = word
+                          .toUpperCase()
+                          .replaceAll("'", "")
+                          .split("");
                       if (gameMode == GameMode.assisted) {
                         curWord = curWord.toSet().toList();
                       }

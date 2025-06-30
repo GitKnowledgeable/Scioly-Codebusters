@@ -15,6 +15,7 @@ class GamePageSetup extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     GameMode gameMode = ref.watch(gameModeProvider(gameId));
     String key = "$gameId (${toTitleCase(gameMode.name)})";
+    String dictionaryId = language == Language.english ? "english" : "spanish";
     final gmProvider = ref.read(gameModeProvider(gameId).notifier);
     final gProvider = ref.read(gameProvider(key).notifier);
     var cellCount = ref.watch(gameProvider(key).select((s) => s.cells.length));
@@ -142,6 +143,7 @@ class GamePageSetup extends ConsumerWidget {
                                   MaterialPageRoute(
                                     builder: (context) => GamePage(
                                       gameId: gameId,
+                                      dictionaryId: dictionaryId,
                                       gameMode: gameMode,
                                       language: language,
                                     ),
@@ -169,6 +171,7 @@ class GamePageSetup extends ConsumerWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => GamePage(
+                                        dictionaryId: dictionaryId,
                                         gameId: gameId,
                                         gameMode: gameMode,
                                         language: language,

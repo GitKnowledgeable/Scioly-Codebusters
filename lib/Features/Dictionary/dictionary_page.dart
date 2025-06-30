@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:projects/library.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DictionaryPage extends StatelessWidget {
-  DictionaryPage({super.key});
+class DictionaryPage extends ConsumerWidget {
+  final String dictionaryId;
+  DictionaryPage({super.key, required this.dictionaryId});
   final _scrollController = ScrollController();
   @override
-  Widget build(BuildContext context) {
-    final entries = dictionary.map.entries.toList();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final entries = ref
+        .watch(patternMapProvider(dictionaryId))
+        .map
+        .entries
+        .toList();
     final colors = [
       AppTheme.logoGreen,
       Colors.yellowAccent,

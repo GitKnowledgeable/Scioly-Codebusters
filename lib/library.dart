@@ -20,6 +20,7 @@ export 'Features/Game Setup/Util/game_setup_library.dart';
 export 'Features/Quotes/Util/quote_library.dart';
 export 'Features/Dictionary/Models/pattern_map.dart';
 export 'Features/Dictionary/Util/dictionary_util.dart';
+export 'Features/Dictionary/Providers/pattern_map_provider.dart';
 
 export 'Features/Game/Widgets/cryptogram_grid_widget.dart';
 export 'Features/Game/Widgets/cell_widget.dart';
@@ -44,3 +45,4 @@ export 'Features/Home/painters/vertical_text.dart';
 export 'theme.dart';
 export 'main.dart';
 export 'Shared/words/english_word_list.dart';
+export 'Shared/words/spanish_word_list.dart';

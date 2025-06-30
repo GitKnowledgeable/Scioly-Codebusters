@@ -6,6 +6,10 @@ String getPatternKey(String word) {
   StringBuffer pattern = StringBuffer();
 
   for (var ch in word.toLowerCase().split('')) {
+    if (ch == "'") {
+      pattern.write("'");
+      continue;
+    }
     if (!letterMap.containsKey(ch)) {
       letterMap[ch] = String.fromCharCode(nextCharCode++);
     }
@@ -14,7 +18,11 @@ String getPatternKey(String word) {
   return pattern.toString();
 }
 
-List<String> getSuggestedWords(List<Cell> cells, int selectedIdx) {
+List<String> getSuggestedWords(
+  List<Cell> cells,
+  int selectedIdx,
+  Map<String, List<String>> dictionary,
+) {
   if (cells.isEmpty || selectedIdx < 0 || selectedIdx >= cells.length) {
     return [];
   }
@@ -23,7 +31,7 @@ List<String> getSuggestedWords(List<Cell> cells, int selectedIdx) {
   for (int j = wordStart; !cells[j].isException; j++) {
     typed += cells[j].text == "" ? "*" : cells[j].text;
   }
-  final words = dictionary.map[getPatternKey(getWord(wordStart, cells))] ?? [];
+  final words = dictionary[getPatternKey(getWord(wordStart, cells))] ?? [];
   final newWords = [...words];
   for (String w in words) {
     for (int j = 0; j < typed.length; j++) {
@@ -39,7 +47,7 @@ int getWordStart(int i, List<Cell> cells) {
   if (cells.isEmpty || i < 0 || i >= cells.length) {
     return 0;
   }
-  while (!cells[i].isException && i >= 0) {
+  while ((!cells[i].isException || cells[i].plainText == "'") && i >= 0) {
     i--;
   }
   return i + 1;
@@ -50,8 +58,12 @@ String getWord(int wordStart, List<Cell> cells) {
     return "";
   }
   String word = "";
-  for (int j = wordStart; !cells[j].isException; j++) {
-    word += cells[j].plainText;
+  for (
+    int i = wordStart;
+    !cells[i].isException || cells[i].plainText == "'";
+    i++
+  ) {
+    word += cells[i].plainText;
   }
   return word;
 }

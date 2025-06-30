@@ -4,12 +4,14 @@ import 'package:projects/library.dart';
 
 class GamePage extends ConsumerWidget {
   final String gameId;
+  final String dictionaryId;
   final GameMode gameMode;
   final Language language;
 
   const GamePage({
     super.key,
     required this.gameId,
+    required this.dictionaryId,
     required this.gameMode,
     required this.language,
   });
@@ -22,9 +24,6 @@ class GamePage extends ConsumerWidget {
     final quote = ref.watch(gameProvider(key).select((s) => s.quote.ogQuote));
     final bool isCorrect = ref.watch(
       gameProvider(key).select((s) => s.isCorrect),
-    );
-    final bool showCorrect = ref.watch(
-      gameProvider(key).select((s) => s.showCorrect),
     );
     final showComplete = ref.watch(
       gameProvider(key).select((s) => s.showComplete),
@@ -94,6 +93,7 @@ class GamePage extends ConsumerWidget {
                       return DictionaryPopoverWidget(
                         gameId: gameId,
                         gameMode: gameMode,
+                        dictionaryId: dictionaryId,
                       );
                     },
                   ),
@@ -101,11 +101,7 @@ class GamePage extends ConsumerWidget {
                   top: 0,
                   left: 0,
                   right: 0,
-                  child: GamePageHeaderWidget(
-                    provider: provider,
-                    showCorrect: showCorrect,
-                    gameKey: key,
-                  ),
+                  child: GamePageHeaderWidget(gameKey: key),
                 ),
                 Positioned(
                   left: 0,

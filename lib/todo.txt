@@ -8,9 +8,11 @@ v.2.0.0
 4. Sound effects + background lofi music (changeable in settings) - Manoj
 5. Spanish Dictionary - Add suggestions for xenocrypt - Suvan
 6. Dictionary Suggestions: - Suvan (manoj after second dictionary added)
-    - DEBUG Undo
-    - Contractions fix
-    - Secondary dictionary with keywords rather than all words (toggle in view dictionary)
+    - DEBUG Undo - done
+    - Contractions fix - done
+    - Rank words by frequency
+    - Secondary dictionary with keywords rather than all words (toggle in view dictionary) - remove
+    - Search dictionary
     - Toggle switch implementation for the two different dictionaries - Manoj
 7. Connect the quotes files - Manoj
     - Add the functions for getting the quotes

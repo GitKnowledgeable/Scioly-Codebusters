@@ -116,7 +116,8 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DictionaryPage(),
+                              builder: (context) =>
+                                  DictionaryPage(dictionaryId: "english"),
                             ),
                           );
                         },

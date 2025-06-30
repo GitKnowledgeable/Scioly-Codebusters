@@ -4,15 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projects/library.dart';
 
 class GamePageHeaderWidget extends ConsumerStatefulWidget {
-  final GameProvider provider;
-  final bool showCorrect;
   final String gameKey;
-  const GamePageHeaderWidget({
-    super.key,
-    required this.provider,
-    required this.showCorrect,
-    required this.gameKey,
-  });
+  const GamePageHeaderWidget({super.key, required this.gameKey});
 
   @override
   ConsumerState<GamePageHeaderWidget> createState() =>
@@ -55,9 +48,9 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
   Widget build(BuildContext context) {
     final gameState = ref.watch(gameProvider(widget.gameKey));
     if (gameState.cells.isEmpty) {
-      // Or whatever condition means "empty"
       return const SizedBox.shrink();
     }
+    final provider = ref.read(gameProvider(widget.gameKey).notifier);
     final showCorrect = ref.watch(
       gameProvider(widget.gameKey).select((s) => s.showCorrect),
     );
@@ -112,9 +105,9 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                           value: showCorrect,
                           onChanged: (bool? value) {
                             if (showCorrect) {
-                              widget.provider.markIncorrect();
+                              provider.markIncorrect();
                             } else {
-                              widget.provider.markCorrect();
+                              provider.markCorrect();
                             }
                           },
                         ),
@@ -127,7 +120,7 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                 if (widget.gameKey == "Aristocrats (Assisted)")
                   GestureDetector(
                     onTap: () {
-                      widget.provider.setSuggestions(!showSuggestions);
+                      provider.setSuggestions(!showSuggestions);
                     },
                     child: Container(
                       padding: EdgeInsets.all(insetPadding),
@@ -147,7 +140,7 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                 SizedBox(width: padding),
                 GestureDetector(
                   onTapUp: (TapUpDetails details) {
-                    widget.provider.hint();
+                    provider.hint();
                     if (mounted) _animationController.reverse();
                   },
                   onTapDown: (details) {
