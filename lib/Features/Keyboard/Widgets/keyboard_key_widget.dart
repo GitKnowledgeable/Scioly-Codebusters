@@ -84,12 +84,12 @@ class _KeyboardKeyWidgetState extends ConsumerState<KeyboardKeyWidget>
                         (50 * _scaleAnimation.value).toInt(),
                       )
                     : widget.color.withAlpha(
-                        (150 * _scaleAnimation.value * _scaleAnimation.value)
+                        (100 * _scaleAnimation.value * _scaleAnimation.value)
                             .toInt(),
                       ),
                 border: widget.isPressed
                     ? Border.all(width: 0)
-                    : Border.all(color: widget.color, width: 1),
+                    : Border.all(color: widget.color.withAlpha(150), width: 1),
               ),
               child: Center(
                 child: Text(

@@ -61,6 +61,16 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
     final showCorrect = ref.watch(
       gameProvider(widget.gameKey).select((s) => s.showCorrect),
     );
+    final showSuggestions = ref.watch(
+      gameProvider(widget.gameKey).select((s) => s.showSuggestions),
+    );
+
+    final timerColor = Colors.redAccent;
+    final showCorrectColor = AppTheme.logoGreen;
+    final dictionaryToggleColor = showSuggestions
+        ? Colors.lightBlueAccent
+        : Colors.blueAccent;
+    final hintColor = Colors.yellowAccent;
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
@@ -73,19 +83,14 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TimerWidget(timerId: widget.gameKey),
+                TimerWidget(timerId: widget.gameKey, color: timerColor),
+                SizedBox(width: padding),
                 Expanded(
                   child: Container(
                     height: panelHeight,
-                    margin: EdgeInsets.symmetric(horizontal: 7),
                     decoration: BoxDecoration(
-                      border: BoxBorder.all(
-                        color: AppTheme.logoGreen,
-                        width: 1,
-                      ),
-                      color: AppTheme.logoGreen.withAlpha(
-                        showCorrect ? 75 : 50,
-                      ),
+                      border: BoxBorder.all(color: showCorrectColor, width: 1),
+                      color: showCorrectColor.withAlpha(showCorrect ? 75 : 50),
                     ),
                     child: Center(
                       child: ListTileTheme(
@@ -94,16 +99,16 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                           title: Text(
                             'Show Correct',
                             style: TextStyle(
-                              color: AppTheme.logoGreen,
+                              color: showCorrectColor,
                               fontFamily: 'JetBrainsMonoBold',
-                              fontSize: 15,
+                              fontSize: 12,
                             ),
                           ),
                           controlAffinity: ListTileControlAffinity.leading,
                           contentPadding: EdgeInsets.zero,
                           checkColor: Colors.white,
-                          activeColor: AppTheme.logoGreen,
-                          side: const BorderSide(color: AppTheme.logoGreen),
+                          activeColor: showCorrectColor,
+                          side: BorderSide(color: showCorrectColor),
                           value: showCorrect,
                           onChanged: (bool? value) {
                             if (showCorrect) {
@@ -117,6 +122,29 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                     ),
                   ),
                 ),
+                if (widget.gameKey == "Aristocrats (Assisted)")
+                  SizedBox(width: padding),
+                if (widget.gameKey == "Aristocrats (Assisted)")
+                  GestureDetector(
+                    onTap: () {
+                      widget.provider.setSuggestions(!showSuggestions);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(insetPadding),
+                      decoration: BoxDecoration(
+                        color: dictionaryToggleColor.withAlpha(50),
+                        border: Border.all(
+                          color: dictionaryToggleColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.menu_book_sharp,
+                        color: dictionaryToggleColor,
+                      ),
+                    ),
+                  ),
+                SizedBox(width: padding),
                 GestureDetector(
                   onTapUp: (TapUpDetails details) {
                     widget.provider.hint();
@@ -133,21 +161,19 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                       width: 100,
                       padding: EdgeInsets.all(padding),
                       decoration: BoxDecoration(
-                        color: AppTheme.logoGreen.withAlpha(
+                        color: hintColor.withAlpha(
                           _alphaColorAnimation.value.toInt(),
                         ),
-                        border: Border.all(color: AppTheme.logoGreen, width: 1),
+                        border: Border.all(color: hintColor, width: 1),
                       ),
                       child: Center(
                         child: Text(
                           "Hint",
                           style: TextStyle(
-                            color: AppTheme.logoGreen,
+                            color: hintColor,
                             fontSize: 20,
                             fontFamily: 'JetBrainsMonoBold',
-                            shadows: [
-                              Shadow(color: AppTheme.logoGreen, blurRadius: 5),
-                            ],
+                            shadows: [Shadow(color: hintColor, blurRadius: 5)],
                           ),
                         ),
                       ),

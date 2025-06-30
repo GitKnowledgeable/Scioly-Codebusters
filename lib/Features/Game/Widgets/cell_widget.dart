@@ -12,14 +12,14 @@ class CellWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cells = ref.watch(gameProvider(gameId).select((s) => s.cells));
     //calculate colors
-    var cellColor = AppTheme.logoGreen.withAlpha(50);
+    var cellColor = gameCellColor.withAlpha(50);
     var textColor = Colors.white;
     List<BoxShadow> shadows = [];
 
     // This should stay first, this is least important
     if (cells[index].isCorrect) {
       textColor = Colors.black;
-      shadows = [BoxShadow(color: AppTheme.logoGreen, blurRadius: 5)];
+      shadows = [BoxShadow(color: gameCellColor, blurRadius: 5)];
     }
 
     // This set of conditions if more important than the .isCorrect conditions
@@ -60,7 +60,7 @@ class CellWidget extends ConsumerWidget {
               height: containerHeight,
               decoration: BoxDecoration(
                 color: cellColor,
-                border: Border.all(color: AppTheme.logoGreen, width: 1),
+                border: Border.all(color: gameCellColor, width: 1),
                 boxShadow: shadows,
               ),
               child: Center(

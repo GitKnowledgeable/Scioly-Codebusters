@@ -7,6 +7,7 @@ class Game {
   final Quote quote;
   final bool isCorrect;
   final bool showCorrect;
+  final bool showSuggestions;
   final bool usedHints;
   final bool isPerfect;
   final bool showComplete;
@@ -22,6 +23,7 @@ class Game {
     this.usedHints = false,
     this.isPerfect = true,
     this.showComplete = false,
+    this.showSuggestions = false,
     this.history = const [],
     this.cells = const [],
     this.gameMode = GameMode.assisted,
@@ -35,6 +37,7 @@ class Game {
     bool? usedHints,
     bool? isPerfect,
     bool? showComplete,
+    bool? showSuggestions,
     List<Game>? history,
     List<Cell>? cells,
     GameMode? gameMode,
@@ -47,6 +50,7 @@ class Game {
       usedHints: usedHints ?? this.usedHints,
       isPerfect: isPerfect ?? this.isPerfect,
       showComplete: showComplete ?? this.showComplete,
+      showSuggestions: showSuggestions ?? this.showSuggestions,
       history: history ?? this.history,
       cells: cells ?? this.cells,
       gameMode: gameMode ?? this.gameMode,

@@ -29,6 +29,9 @@ class GamePage extends ConsumerWidget {
     final showComplete = ref.watch(
       gameProvider(key).select((s) => s.showComplete),
     );
+    final showSuggestions = ref.watch(
+      gameProvider(key).select((s) => s.showSuggestions),
+    );
     return Container(
       decoration: AppTheme.backgroundGradient,
       child: Scaffold(
@@ -84,7 +87,7 @@ class GamePage extends ConsumerWidget {
                     ],
                   ),
                 ),
-                if (gameId == "Aristocrats")
+                if (gameId == "Aristocrats" && showSuggestions)
                   AnimatedBuilder(
                     animation: scrollController,
                     builder: (context, child) {

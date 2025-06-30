@@ -5,6 +5,7 @@ import 'package:projects/library.dart';
 class StyledButtonWidget extends ConsumerStatefulWidget {
   final String value;
   final Color txtColor;
+  final Color bgColor;
   final double endAlpha;
   final double marginHorizontal;
   final double marginVertical;
@@ -25,6 +26,7 @@ class StyledButtonWidget extends ConsumerStatefulWidget {
     this.paddingHorizontal = 5.0,
     this.paddingVertical = 5.0,
     this.txtColor = Colors.white,
+    this.bgColor = AppTheme.logoGreen,
     this.height = -1,
     this.addTextShadow = false,
   });
@@ -88,10 +90,8 @@ class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
             ),
             height: widget.height != -1 ? widget.height : null,
             decoration: BoxDecoration(
-              color: AppTheme.logoGreen.withAlpha(
-                (_alphaAnimation.value).toInt(),
-              ),
-              border: Border.all(color: AppTheme.logoGreen, width: 1),
+              color: widget.bgColor.withAlpha((_alphaAnimation.value).toInt()),
+              border: Border.all(color: widget.bgColor, width: 1),
             ),
             child: Center(
               child: Text(
@@ -100,7 +100,7 @@ class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
                   color: widget.txtColor,
                   fontSize: 15,
                   shadows: widget.addTextShadow
-                      ? [Shadow(color: AppTheme.logoGreen, blurRadius: 10)]
+                      ? [Shadow(color: widget.bgColor, blurRadius: 10)]
                       : [],
                 ),
               ),

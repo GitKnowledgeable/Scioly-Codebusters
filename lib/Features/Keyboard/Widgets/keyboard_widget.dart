@@ -46,7 +46,8 @@ class KeyboardWidget extends ConsumerWidget {
                 .read(keyboardProvider(gameKey).notifier)
                 .pressKey(key, true),
             isPressed: isPressed,
-            color: AppTheme.backgroundColors[2],
+            // color: AppTheme.backgroundColors[2],
+            color: AppTheme.logoGreen,
           ),
         ),
       );
@@ -65,16 +66,7 @@ class KeyboardWidget extends ConsumerWidget {
     return SizedBox(
       height: keyboardH,
       child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              ...AppTheme.backgroundColors,
-              const Color.fromARGB(255, 0, 29, 61),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+        decoration: BoxDecoration(color: Colors.black),
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
@@ -91,7 +83,7 @@ class KeyboardWidget extends ConsumerWidget {
                         .incrementCell(-1),
                     padding: padding + 10,
                     endScale: 1.05,
-                    color: AppTheme.backgroundColors[2],
+                    color: AppTheme.logoGreen,
                   ),
                 ),
                 SizedBox(width: padding),
@@ -106,7 +98,7 @@ class KeyboardWidget extends ConsumerWidget {
                           .resetPuzzle(),
                       padding: padding + 10,
                       endScale: 1.05,
-                      color: AppTheme.backgroundColors[2],
+                      color: AppTheme.logoGreen,
                     ),
                   ),
                 ),
@@ -120,7 +112,7 @@ class KeyboardWidget extends ConsumerWidget {
                         .pressKey("", true),
                     padding: padding + 10,
                     endScale: 1.05,
-                    color: AppTheme.backgroundColors[2],
+                    color: AppTheme.logoGreen,
                   ),
                 ),
                 SizedBox(width: padding),
@@ -132,7 +124,7 @@ class KeyboardWidget extends ConsumerWidget {
                         ref.read(keyboardProvider(gameKey).notifier).undo(),
                     padding: padding + 10,
                     endScale: 1.05,
-                    color: AppTheme.backgroundColors[2],
+                    color: AppTheme.logoGreen,
                   ),
                 ),
                 SizedBox(width: padding),
@@ -145,7 +137,7 @@ class KeyboardWidget extends ConsumerWidget {
                         .incrementCell(1),
                     padding: padding + 10,
                     endScale: 1.05,
-                    color: AppTheme.backgroundColors[2],
+                    color: AppTheme.logoGreen,
                   ),
                 ),
               ],

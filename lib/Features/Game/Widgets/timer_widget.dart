@@ -4,8 +4,13 @@ import 'package:projects/library.dart';
 
 class TimerWidget extends ConsumerStatefulWidget {
   final String timerId;
+  final Color color;
 
-  const TimerWidget({super.key, required this.timerId});
+  const TimerWidget({
+    super.key,
+    required this.timerId,
+    this.color = AppTheme.logoGreen,
+  });
 
   @override
   ConsumerState<TimerWidget> createState() => _TimerWidgetState();
@@ -36,19 +41,19 @@ class _TimerWidgetState extends ConsumerState<TimerWidget> {
     final time = ref.watch(timerProvider(widget.timerId));
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.logoGreen.withAlpha(50),
-        border: Border.all(color: AppTheme.logoGreen, width: 1),
+        color: widget.color.withAlpha(50),
+        border: Border.all(color: widget.color, width: 1),
       ),
       width: 100,
       padding: EdgeInsets.all(padding),
       child: Center(
         child: Text(
           '${time}s',
-          style: const TextStyle(
-            color: AppTheme.logoGreen,
+          style: TextStyle(
+            color: widget.color,
             fontSize: 30,
             fontFamily: 'JetBrainsMonoBold',
-            shadows: [Shadow(color: AppTheme.logoGreen, blurRadius: 10)],
+            shadows: [Shadow(color: widget.color, blurRadius: 10)],
           ),
         ),
       ),

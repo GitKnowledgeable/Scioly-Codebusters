@@ -24,6 +24,8 @@ class DictionaryPopoverWidget extends ConsumerWidget {
     final newWords = getSuggestedWords(cells, selectedIdx);
     int wordStart = getWordStart(selectedIdx, cells);
 
+    Color suggestionColor = Colors.blueAccent;
+
     return Positioned(
       bottom: keyboardH,
       left: 0,
@@ -47,7 +49,8 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                     value: word,
                     marginHorizontal: 3,
                     marginVertical: 3,
-                    txtColor: AppTheme.logoGreen,
+                    txtColor: suggestionColor,
+                    bgColor: suggestionColor,
                     paddingVertical: 0,
                     height: containerHeight,
                     addTextShadow: true,

@@ -27,6 +27,8 @@ final keyboardH = screenH * 0.25; // Height of the keyboard widget
 //panel height for timer etc.
 const double panelHeight = 60.0;
 
+Color gameCellColor = AppTheme.logoGreen;
+
 /// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
 final appThemeProvider = AppTheme.theme;
 
@@ -152,13 +154,13 @@ class AppTheme {
   static TextStyle keyboardKeyTextStyle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
-    color: keyboardKeyText,
+    color: gameCellColor,
   );
 
   static TextStyle decorationTextStyle = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w600,
-    color: keyboardKeyText,
+    color: gameCellColor,
   );
 
   static ButtonStyle flatRedButton = TextButton.styleFrom(

@@ -51,6 +51,10 @@ class GameProvider extends FamilyNotifier<Game, String> {
     );
   }
 
+  void setSuggestions(bool value) {
+    state = state.copyWith(showSuggestions: value);
+  }
+
   void selectCell(int index) {
     state = state.copyWith(
       cells: [...state.cells].selectCell(index),
