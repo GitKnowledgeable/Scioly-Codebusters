@@ -8,13 +8,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-//import 'package:projects/main.dart';
-import 'package:projects/Features/Home/home_page.dart';
+import 'package:projects/library.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    final audioController = AudioController();
+    await audioController.initialize();
+
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const HomePage()); //changed from MyApp
+    await tester.pumpWidget(
+      HomePage(audioCont: audioController),
+    ); //changed from MyApp
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

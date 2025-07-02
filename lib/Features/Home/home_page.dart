@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GameSetup.init(context);
-    audioCont.playSound("assets/music/bg.mp3");
+    // audioCont.playSound("assets/music/bg.mp3");
 
     return Container(
       decoration: AppTheme.backgroundGradient,

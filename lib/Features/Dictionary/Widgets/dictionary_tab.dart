@@ -171,16 +171,32 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
                   controller: _searchController,
                   decoration: InputDecoration(
                     hintText: 'Search word...',
-                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle(color: AppTheme.logoGreen),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppTheme.logoGreen,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black.withAlpha(200),
+                        width: 1,
+                      ),
+                    ),
+                    fillColor: Colors.black.withAlpha(150),
+                    suffixIcon: Icon(Icons.search, color: Colors.white),
                   ),
+                  cursorColor: AppTheme.logoGreen,
+                  style: TextStyle(color: AppTheme.logoGreen),
                   onSubmitted: (_) => _onSearch(entries),
                 ),
               ),
-              const SizedBox(width: 8),
-              ElevatedButton(
-                onPressed: () => _onSearch(entries),
-                child: const Icon(Icons.search),
-              ),
+              // ElevatedButton(
+              //   onPressed: () => _onSearch(entries),
+              //   child: const Icon(Icons.search),
+              // ),
             ],
           ),
         ),
