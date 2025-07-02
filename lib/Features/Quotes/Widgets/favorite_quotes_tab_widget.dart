@@ -10,6 +10,13 @@ class FavoritesTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final favorites = ref.watch(favoriteQuotesProvider);
 
+    List<Color> colors = [
+      AppTheme.logoGreen,
+      Colors.redAccent,
+      Colors.blueAccent,
+      Colors.yellowAccent,
+    ];
+
     return favorites.isEmpty
         ? const Center(child: Text("No favorite quotes yet."))
         : ListView.builder(
@@ -19,6 +26,7 @@ class FavoritesTab extends ConsumerWidget {
               final quoteIndex = ref.read(quoteListProvider).indexOf(quote);
               return QuoteCard(
                 quote: quote,
+                color: colors[index],
                 onFavoriteToggle: () => ref
                     .read(quoteListProvider.notifier)
                     .toggleFavorite(quoteIndex),

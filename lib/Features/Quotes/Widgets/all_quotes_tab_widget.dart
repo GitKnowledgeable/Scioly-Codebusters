@@ -10,12 +10,20 @@ class AllQuotesTab extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final quotes = ref.watch(quoteListProvider);
 
+    List<Color> colors = [
+      AppTheme.logoGreen,
+      Colors.redAccent,
+      Colors.blueAccent,
+      Colors.yellowAccent,
+    ];
+
     return ListView.builder(
       itemCount: quotes.length,
       itemBuilder: (context, index) {
         final quote = quotes[index];
         return QuoteCard(
           quote: quote,
+          color: colors[index % colors.length],
           onFavoriteToggle: () =>
               ref.read(quoteListProvider.notifier).toggleFavorite(index),
         );

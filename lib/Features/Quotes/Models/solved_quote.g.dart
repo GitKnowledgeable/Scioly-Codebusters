@@ -22,6 +22,7 @@ class SolvedQuoteAdapter extends TypeAdapter<SolvedQuote> {
       rating: fields[2] as int,
       solveTime: fields[3] as double,
       gameMode: fields[4] as String,
+      date: fields[6] as DateTime,
       isFavorite: fields[5] as bool,
     );
   }
@@ -29,7 +30,7 @@ class SolvedQuoteAdapter extends TypeAdapter<SolvedQuote> {
   @override
   void write(BinaryWriter writer, SolvedQuote obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.text)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class SolvedQuoteAdapter extends TypeAdapter<SolvedQuote> {
       ..writeByte(4)
       ..write(obj.gameMode)
       ..writeByte(5)
-      ..write(obj.isFavorite);
+      ..write(obj.isFavorite)
+      ..writeByte(6)
+      ..write(obj.date);
   }
 
   @override

@@ -21,12 +21,16 @@ class SolvedQuote extends HiveObject {
   @HiveField(5)
   bool isFavorite;
 
+  @HiveField(6)
+  DateTime date;
+
   SolvedQuote({
     required this.text,
     required this.author,
     required this.rating,
     required this.solveTime,
     required this.gameMode,
+    required this.date,
     this.isFavorite = false,
   });
 }

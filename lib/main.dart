@@ -28,6 +28,7 @@ void main() async {
   Hive.registerAdapter(SolveRecordAdapter());
   Hive.registerAdapter(GameModeStatsAdapter());
   Hive.registerAdapter(SolvedQuoteAdapter());
+
   await Hive.openBox<GameModeStats>('statsBox');
   await Hive.openBox<SolvedQuote>('quotesBox');
 
