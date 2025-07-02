@@ -24,6 +24,7 @@ export 'Features/Game/Widgets/cryptogram_grid_widget.dart';
 export 'Features/Game/Widgets/cell_widget.dart';
 export 'Features/Game/Widgets/timer_widget.dart';
 export 'Features/Game/Widgets/game_page_header_widget.dart';
+export 'Features/Game/Widgets/quote_display_widget.dart';
 export 'Features/Game/game_page.dart';
 
 export 'Features/Keyboard/Models/keyboard.dart';

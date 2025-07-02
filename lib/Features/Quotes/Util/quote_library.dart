@@ -74,12 +74,14 @@ class QuoteLibrary {
       tempOgQuote =
           "*hello, world! What a wonderful time to be alive. Don't you think so? I need some more words to fill space so that is what this is. Looks like I need even more words. Is this enough? I guess there's only one way to find out...";
     }
+    String tempAuthor = "Testing Author";
     String tempPlainText = tempOgQuote.toUpperCase();
     Map<String, String> tempKey = generateKey(tempPlainText, language);
     String tempCipherText = generateCipherText(tempPlainText, tempKey);
     Map<String, int> tempFrequencies = getFrequencies(tempPlainText);
     return Quote(
       ogQuote: tempOgQuote,
+      author: tempAuthor,
       plainText: tempPlainText,
       key: tempKey,
       cipherText: tempCipherText,

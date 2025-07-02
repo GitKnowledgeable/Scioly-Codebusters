@@ -20,6 +20,7 @@ class GamePage extends ConsumerWidget {
     final provider = ref.read(gameProvider(key).notifier);
     final scrollController = ref.watch(scrollProvider(key));
     final quote = ref.watch(gameProvider(key).select((s) => s.quote.ogQuote));
+    final author = ref.watch(gameProvider(key).select((s) => s.quote.author));
     final bool isCorrect = ref.watch(
       gameProvider(key).select((s) => s.isCorrect),
     );
@@ -114,7 +115,7 @@ class GamePage extends ConsumerWidget {
                 color: Colors.black.withAlpha(128),
                 child: Center(
                   child: Container(
-                    width: 250,
+                    width: screenW - 50,
                     padding: const EdgeInsets.symmetric(
                       vertical: 20,
                       horizontal: 20,
@@ -129,6 +130,8 @@ class GamePage extends ConsumerWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        QuoteDisplayWidget(quote: quote, author: author),
+                        SizedBox(height: 20),
                         const Text(
                           'Congratulations!',
                           style: TextStyle(

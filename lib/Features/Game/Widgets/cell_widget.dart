@@ -4,22 +4,32 @@ import 'package:projects/library.dart';
 
 class CellWidget extends ConsumerWidget {
   final int index;
-  final String gameId;
+  final String gameKey;
 
-  const CellWidget({super.key, required this.index, required this.gameId});
+  const CellWidget({super.key, required this.index, required this.gameKey});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cells = ref.watch(gameProvider(gameId).select((s) => s.cells));
+    final cells = ref.watch(gameProvider(gameKey).select((s) => s.cells));
+    final showCorrect = ref.watch(
+      gameProvider(gameKey).select((s) => s.showCorrect),
+    );
+
     //calculate colors
     var cellColor = gameCellColor.withAlpha(50);
     var textColor = Colors.white;
+    var borderColor = gameCellColor;
     List<BoxShadow> shadows = [];
 
     // This should stay first, this is least important
     if (cells[index].isCorrect) {
       textColor = Colors.black;
       shadows = [BoxShadow(color: gameCellColor, blurRadius: 5)];
+    } else if (showCorrect && cells[index].text != "") {
+      cellColor = Colors.red;
+      borderColor = Colors.red;
+      textColor = Colors.black;
+      shadows = [BoxShadow(color: Colors.red, blurRadius: 10)];
     }
 
     // This set of conditions if more important than the .isCorrect conditions
@@ -33,8 +43,10 @@ class CellWidget extends ConsumerWidget {
     }
 
     // Most important set of conditions, so at bottom
-    if (cells[index].isDuplicate) {
+    if (cells[index].isDuplicate && !showCorrect) {
       textColor = Colors.red;
+    } else if (cells[index].isDuplicate) {
+      textColor = Colors.black;
     }
 
     if (!cells[index].isException) {
@@ -53,14 +65,14 @@ class CellWidget extends ConsumerWidget {
           SizedBox(width: containerWidth, height: padding),
           GestureDetector(
             onTap: () =>
-                ref.read(gameProvider(gameId).notifier).selectCell(index),
+                ref.read(gameProvider(gameKey).notifier).selectCell(index),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               width: containerWidth,
               height: containerHeight,
               decoration: BoxDecoration(
                 color: cellColor,
-                border: Border.all(color: gameCellColor, width: 1),
+                border: Border.all(color: borderColor, width: 1),
                 boxShadow: shadows,
               ),
               child: Center(

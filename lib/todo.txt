@@ -1,7 +1,7 @@
 v.2.0.0
 1. Make styling for game page better - Manoj
-    - Highlight the mistakes red
-    - Modify show correct font size
+    - Highlight the mistakes red - done
+    - Modify show correct font size - done
     - Display quotes need to look better + Author
     - Continue button (reconsideration)
 2. Add logs (gameId, quote, stars, time) (perfect solves can be highlighted) for quotes solved + favorite quotes - done

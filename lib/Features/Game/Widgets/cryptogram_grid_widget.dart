@@ -13,7 +13,7 @@ class CryptogramGridWidget extends ConsumerWidget {
     Map<int, List<Widget>> rows = {};
     for (int i = 0; i < cells.length; i++) {
       rows.putIfAbsent(cells[i].row, () => []);
-      rows[cells[i].row]!.add(CellWidget(index: i, gameId: gameKey));
+      rows[cells[i].row]!.add(CellWidget(index: i, gameKey: gameKey));
       if (!cells[i].isException) {
         rows[cells[i].row]!.add(
           SizedBox(width: padding, height: containerHeight),

@@ -21,7 +21,6 @@ class _VerticalFallingLineState extends ConsumerState<VerticalFallingLine>
   String text = "";
   double y = 0;
   double x = 0;
-  late CustomPaint fallingText;
 
   @override
   void initState() {
