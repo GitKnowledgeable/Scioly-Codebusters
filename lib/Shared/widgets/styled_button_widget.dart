@@ -96,18 +96,18 @@ class _StyledButtonWidgetState extends ConsumerState<StyledButtonWidget>
               border: Border.all(color: widget.bgColor, width: 1),
             ),
             child: Center(
-              child: widget.valueIcon != null
-                  ? widget.valueIcon
-                  : Text(
-                      widget.value,
-                      style: TextStyle(
-                        color: widget.txtColor,
-                        fontSize: 15,
-                        shadows: widget.addTextShadow
-                            ? [Shadow(color: widget.bgColor, blurRadius: 10)]
-                            : [],
-                      ),
+              child:
+                  widget.valueIcon ??
+                  Text(
+                    widget.value,
+                    style: TextStyle(
+                      color: widget.txtColor,
+                      fontSize: 15,
+                      shadows: widget.addTextShadow
+                          ? [Shadow(color: widget.bgColor, blurRadius: 10)]
+                          : [],
                     ),
+                  ),
             ),
           ),
         );
