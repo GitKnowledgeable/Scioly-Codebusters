@@ -14,6 +14,7 @@ class Game {
   final List<Game> history; //stores previous states, not itself
   final List<Cell> cells;
   final GameMode gameMode;
+  final int rating;
 
   Game({
     required this.quote,
@@ -27,6 +28,7 @@ class Game {
     this.history = const [],
     this.cells = const [],
     this.gameMode = GameMode.assisted,
+    this.rating = 2,
   });
 
   Game copyWith({
@@ -41,6 +43,7 @@ class Game {
     List<Game>? history,
     List<Cell>? cells,
     GameMode? gameMode,
+    int? rating,
   }) {
     return Game(
       quote: quote ?? this.quote,
@@ -54,6 +57,7 @@ class Game {
       history: history ?? this.history,
       cells: cells ?? this.cells,
       gameMode: gameMode ?? this.gameMode,
+      rating: rating ?? this.rating,
     );
   }
 }

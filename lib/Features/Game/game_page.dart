@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projects/Features/Game/Widgets/finished_quote_widget.dart';
 import 'package:projects/library.dart';
 
 class GamePage extends ConsumerWidget {
@@ -30,6 +31,7 @@ class GamePage extends ConsumerWidget {
     final showSuggestions = ref.watch(
       gameProvider(key).select((s) => s.showSuggestions),
     );
+
     return Container(
       decoration: AppTheme.backgroundGradient,
       child: Scaffold(
@@ -45,10 +47,10 @@ class GamePage extends ConsumerWidget {
           actions: [
             if (isCorrect && !showComplete)
               StyledButtonWidget(
-                value: "Continue",
+                valueIcon: Icon(Icons.start, color: AppTheme.logoGreen),
                 onPressed: () => provider.setPopup(true),
-                marginHorizontal: 5,
-                marginVertical: 10,
+                marginVertical: 5,
+                paddingHorizontal: 10,
               ),
           ],
         ),
@@ -66,24 +68,7 @@ class GamePage extends ConsumerWidget {
                         keyboardH +
                         (containerHeight * 2), // Add enough bottom padding
                   ),
-                  child: Column(
-                    children: [
-                      CryptogramGridWidget(gameKey: key),
-                      if (isCorrect)
-                        Column(
-                          children: [
-                            SizedBox(height: padding),
-                            SizedBox(
-                              width: maxLength,
-                              child: Text(
-                                quote,
-                                style: const TextStyle(fontSize: 18),
-                              ),
-                            ),
-                          ],
-                        ),
-                    ],
-                  ),
+                  child: Column(children: [CryptogramGridWidget(gameKey: key)]),
                 ),
                 if (showSuggestions)
                   AnimatedBuilder(
@@ -111,72 +96,7 @@ class GamePage extends ConsumerWidget {
               ],
             ),
             if (showComplete)
-              Container(
-                color: Colors.black.withAlpha(128),
-                child: Center(
-                  child: Container(
-                    width: screenW - 50,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 20,
-                      horizontal: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      border: Border.all(color: AppTheme.logoGreen, width: 1),
-                      boxShadow: [
-                        BoxShadow(color: AppTheme.logoGreen, blurRadius: 5),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        QuoteDisplayWidget(quote: quote, author: author),
-                        SizedBox(height: 20),
-                        const Text(
-                          'Congratulations!',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: AppTheme.logoGreen,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        StyledButtonWidget(
-                          value: "Play Again",
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                            provider.destroy();
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        StyledButtonWidget(
-                          value: "View Quote",
-                          onPressed: () {
-                            provider.setPopup(false);
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        StyledButtonWidget(
-                          value: "Save Quote",
-                          onPressed: () {
-                            Null;
-                          },
-                        ),
-                        const SizedBox(height: 20),
-                        StyledButtonWidget(
-                          value: "Home",
-                          onPressed: () {
-                            Navigator.of(
-                              context,
-                            ).popUntil((route) => route.isFirst);
-                            provider.destroy();
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              FinishedQuoteWidget(quote: quote, author: author, gameKey: key),
           ],
         ),
       ),

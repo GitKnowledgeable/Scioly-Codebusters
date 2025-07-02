@@ -2,10 +2,11 @@ v.2.0.0
 1. Make styling for game page better - Manoj
     - Highlight the mistakes red - done
     - Modify show correct font size - done
-    - Display quotes need to look better + Author
-    - Continue button (reconsideration)
+    - Display quotes need to look better + Author - done
+    - Continue button (reconsideration) - done
 2. Add logs (gameId, quote, stars, time) (perfect solves can be highlighted) for quotes solved + favorite quotes - done
-3. Display stars + time on solve - Manoj
+3. Display stars + time on solve - Manoj - done
+    - Animation for perfect solve
 4. Sound effects + background lofi music (changeable in settings) - Manoj
 5. Spanish Dictionary - Add suggestions for xenocrypt - done
 6. Dictionary Suggestions:

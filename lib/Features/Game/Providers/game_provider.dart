@@ -36,9 +36,9 @@ class GameProvider extends FamilyNotifier<Game, String> {
     );
     nextCell(index - 1);
     if (state.gameMode == GameMode.assisted) markDuplicate();
+    if (!state.isCorrect) checkAnswer();
     if (state.showCorrect) markCorrect();
     if (!state.showCorrect) markIncorrect();
-    if (!state.isCorrect) checkAnswer();
     return currLetter;
   }
 
@@ -144,20 +144,17 @@ class GameProvider extends FamilyNotifier<Game, String> {
     } else if (state.isPerfect) {
       stars = 3;
     }
+    state = state.copyWith(rating: stars);
     final newQuote = SolvedQuote(
       text: "Quote: ${state.quote.ogQuote}",
-      author: "Author: Benjamin Franklin",
+      author: "Author: ${state.quote.author}",
       rating: stars,
       solveTime: time,
       gameMode: arg,
     );
     ref.read(gameModeStatsProvider(arg).notifier).addSolve(time);
     ref.read(quoteListProvider.notifier).addQuote(newQuote);
-    state = state.copyWith(
-      isCorrect: true,
-      showComplete: true,
-      showCorrect: true,
-    );
+    state = state.copyWith(isCorrect: true, showComplete: true);
     markCorrect();
   }
 
