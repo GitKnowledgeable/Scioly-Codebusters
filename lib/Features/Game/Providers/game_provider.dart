@@ -110,12 +110,14 @@ class GameProvider extends FamilyNotifier<Game, String> {
     bool showCorrect = state.showCorrect;
     bool showSuggestions = state.showSuggestions;
     bool usedHints = state.usedHints;
+    int rating = state.rating;
     state = state.history.last;
     state = state.copyWith(
       isCorrect: isCorrect,
       showCorrect: showCorrect,
       usedHints: usedHints,
       showSuggestions: showSuggestions,
+      rating: rating,
       isPerfect: false,
     );
     selectCell(state.selectedIdx);

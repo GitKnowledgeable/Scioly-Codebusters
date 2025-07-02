@@ -25,6 +25,8 @@ v.2.0.0
 10. How to play: - Suvan
     - Link video AND detailed infographic
 11. ScrollContainer bugs when scrolling to end (check if dictionary popover is present) - done
+12. Update Scioly logo (maybe add intro animation when app opens)
+13. Make Game Setup Buttons look better
     
 
 -- video showcasing features --
