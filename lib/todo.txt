@@ -3,6 +3,7 @@ v.2.0.0
     - Highlight the mistakes red - done
     - Modify show correct font size - done
     - Display quotes need to look better + Author - done
+    - View Quotes page styling
     - Continue button (reconsideration) - done
 2. Add logs (gameId, quote, stars, time) (perfect solves can be highlighted) for quotes solved + favorite quotes - done
 3. Display stars + time on solve - Manoj - done
@@ -19,7 +20,7 @@ v.2.0.0
     - Add the functions for getting the quotes
     - Add more quotes to the file + fix errors
     - Static methods
-8. Stats - Manoj
+8. Stats - Suvan
     - Add total solved
 10. How to play: - Suvan
     - Link video AND detailed infographic

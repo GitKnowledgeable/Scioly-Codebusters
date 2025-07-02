@@ -3215,7 +3215,6 @@ God
 terrorist
 dominant
 successfully
-shit
 lemon
 hungry
 sense
@@ -4470,7 +4469,6 @@ quote
 trash
 disabled
 gross
-damn
 hormone
 texture
 counter
@@ -4665,7 +4663,6 @@ atop
 toll
 rim
 embarrassed
-fucking
 cling
 isolated
 blink

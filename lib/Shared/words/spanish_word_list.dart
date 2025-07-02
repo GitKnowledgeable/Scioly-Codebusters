@@ -497,7 +497,6 @@ sentido
 niño
 quedó
 espero
-mierda
 cree
 mujeres
 estabas
@@ -511,7 +510,6 @@ pena
 pueda
 única
 gustaría
-puta
 pienso
 acaba
 queremos
@@ -1054,14 +1052,12 @@ tendrá
 déjalo
 familiar
 salen
-joder
 andar
 entendido
 llegue
 posibilidad
 tras
 blanco
-carajo
 encargo
 hablé
 descansar
@@ -1141,7 +1137,6 @@ salida
 ayúdame
 quita
 dejaste
-culo
 llegando
 bienvenido
 pregunto
@@ -1451,7 +1446,6 @@ felicidades
 ratito
 llave
 puro
-coger
 quedarse
 tomó
 encantado
@@ -1796,7 +1790,6 @@ importancia
 pocas
 máquina
 clara
-coño
 ángel
 vente
 acuerda
@@ -2196,7 +2189,6 @@ distintas
 patrón
 junta
 juicio
-maldito
 cosita
 escándalo
 estúpida
@@ -2260,7 +2252,6 @@ posibilidades
 miro
 doce
 nacido
-maldita
 propuesta
 enamorada
 rosa
@@ -2492,7 +2483,6 @@ estarás
 favorito
 entrado
 cerrada
-pendejo
 siéntese
 drogas
 armar
@@ -3258,7 +3248,6 @@ invita
 habrán
 técnica
 huesos
-pinche
 ana
 autoridades
 fresco
@@ -3383,7 +3372,6 @@ oficio
 estrés
 confirmado
 cartera
-jode
 encontrarlo
 conoció
 desesperada
@@ -3468,7 +3456,6 @@ desperté
 oscuridad
 convertirse
 apoyar
-putas
 agenda
 mina
 cómplice
@@ -3769,7 +3756,6 @@ joda
 che
 hey
 hermanita
-hostia
 lealtad
 suegra
 intenciones
@@ -3906,7 +3892,6 @@ paró
 volvía
 alberto
 carmen
-cabrones
 ángeles
 tantito
 cálmese
@@ -4588,7 +4573,6 @@ acordaba
 castillo
 cuénteme
 concha
-carajos
 cantante
 bendiga
 leal
@@ -4770,7 +4754,6 @@ colocar
 hágale
 lucía
 decime
-pinches
 muchachas
 euros
 infeliz
