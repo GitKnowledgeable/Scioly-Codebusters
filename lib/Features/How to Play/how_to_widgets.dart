@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:projects/library.dart';
 
 class SectionTitle extends StatelessWidget {
   final String text;
@@ -11,7 +11,7 @@ class SectionTitle extends StatelessWidget {
       padding: const EdgeInsets.only(top: 24.0, bottom: 8),
       child: Text(
         text.toUpperCase(),
-        style: GoogleFonts.orbitron(
+        style: TextStyle(
           color: Colors.lightGreenAccent.shade400,
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -32,7 +32,7 @@ class SubsectionTitle extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16.0, bottom: 4),
       child: Text(
         text,
-        style: GoogleFonts.orbitron(
+        style: TextStyle(
           color: Colors.lightGreenAccent.shade100,
           fontSize: 16,
           fontWeight: FontWeight.w600,
@@ -50,10 +50,7 @@ class Paragraph extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Text(
-        text,
-        style: GoogleFonts.shareTechMono(color: Colors.white, fontSize: 14),
-      ),
+      child: Text(text, style: TextStyle(color: Colors.white, fontSize: 14)),
     );
   }
 }
@@ -74,15 +71,12 @@ class BulletPoints extends StatelessWidget {
             children: [
               const Text(
                 '• ',
-                style: TextStyle(color: Colors.lightGreenAccent, fontSize: 16),
+                style: TextStyle(color: AppTheme.logoGreen, fontSize: 16),
               ),
               Expanded(
                 child: Text(
                   item,
-                  style: GoogleFonts.shareTechMono(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),
             ],
@@ -110,12 +104,11 @@ class ExampleBlock extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF111111),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.cyanAccent, width: 1.5),
+        border: Border.all(color: Colors.lightBlueAccent, width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: Colors.lightGreenAccent.withOpacity(0.2),
+            color: Colors.lightBlueAccent.withAlpha(200),
             blurRadius: 10,
-            spreadRadius: 1,
           ),
         ],
       ),
@@ -124,27 +117,22 @@ class ExampleBlock extends StatelessWidget {
         children: [
           Text(
             'Example:',
-            style: GoogleFonts.orbitron(
-              color: Colors.lightGreenAccent.shade100,
+            style: TextStyle(
+              color: AppTheme.logoGreen,
               fontWeight: FontWeight.w600,
               fontSize: 16,
+              shadows: [Shadow(color: AppTheme.logoGreen, blurRadius: 5)],
             ),
           ),
           const SizedBox(height: 8),
           Text(
             ciphertext,
-            style: GoogleFonts.shareTechMono(
-              color: Colors.greenAccent,
-              fontSize: 14,
-            ),
+            style: TextStyle(color: Colors.redAccent, fontSize: 14),
           ),
           const SizedBox(height: 4),
           Text(
             solution,
-            style: GoogleFonts.shareTechMono(
-              color: Colors.orangeAccent,
-              fontSize: 14,
-            ),
+            style: TextStyle(color: Colors.yellowAccent, fontSize: 14),
           ),
         ],
       ),
