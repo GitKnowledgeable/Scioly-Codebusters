@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 import 'package:flutter/material.dart';
 
 class AllQuotesTab extends ConsumerWidget {

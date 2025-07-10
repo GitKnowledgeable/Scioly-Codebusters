@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 //change width, replace boxes with padding, change file-> cryptogram_grid_widget
 class CryptogramGridWidget extends ConsumerWidget {

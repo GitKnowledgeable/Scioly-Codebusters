@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/Features/Game/Widgets/finished_quote_widget.dart';
-import 'package:projects/library.dart';
+// import 'package:projects/Features/Game/Widgets/finished_quote_widget.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class GamePage extends ConsumerWidget {
   final String gameId;

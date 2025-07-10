@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DictionaryTab extends ConsumerStatefulWidget {

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final AudioController? audioCont;
+  const HomePage({super.key, this.audioCont});
 
   @override
   Widget build(BuildContext context) {
     GameSetup.init(context);
-    // audioCont.playSound("assets/music/bg.mp3");
+    // audioCont?.playBgSound();
 
     return Container(
       decoration: AppTheme.backgroundGradient,
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Settings(),
+                          builder: (context) => Settings(audioCont: audioCont),
                         ),
                       );
                     },

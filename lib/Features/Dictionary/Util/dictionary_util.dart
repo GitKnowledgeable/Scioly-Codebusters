@@ -1,4 +1,4 @@
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 String getPatternKey(String word) {
   Map<String, String> letterMap = {};
@@ -46,7 +46,7 @@ int getWordStart(int i, List<Cell> cells) {
   if (cells.isEmpty || i < 0 || i >= cells.length) {
     return 0;
   }
-  while ((!cells[i].isException || cells[i].plainText == "'") && i >= 0) {
+  while (i >= 0 && (!cells[i].isException || cells[i].plainText == "'")) {
     i--;
   }
   return i + 1;

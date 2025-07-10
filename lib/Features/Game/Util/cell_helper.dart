@@ -1,4 +1,4 @@
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 extension CellHelpers on List<Cell> {
   List<Cell> markCorrect() => map(

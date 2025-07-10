@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class GameProvider extends FamilyNotifier<Game, String> {
   @override
@@ -174,8 +174,12 @@ class GameProvider extends FamilyNotifier<Game, String> {
     state = Game(quote: Quote(), selectedIdx: -1);
   }
 
-  void buildCryptogram(GameMode gameMode, Language language, String gameId) {
-    state = GameSetup.buildCryptogram(gameMode, language, gameId);
+  Future<void> buildCryptogram(
+    GameMode gameMode,
+    Language language,
+    String gameId,
+  ) async {
+    state = await GameSetup.buildCryptogram(gameMode, language, gameId);
     nextCell(-1);
     ref.read(keyboardProvider(arg).notifier).reset();
     ref.read(timerProvider(arg).notifier).restart();

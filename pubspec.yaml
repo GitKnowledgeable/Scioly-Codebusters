@@ -1,5 +1,5 @@
-name: projects
-description: "A new Flutter project."
+name: scioly_codebusters
+description: "Scioly Codebusters is the ultimate codebusters prep app! It allows you to practice over a thousand different quotes with aristocrats and patristocrats so you can level up your codebusting skills! For hobbyists and beginners, enjoy the non-scioly mode and hints to help you solve each cipher.\nThis is the most versatile app to practice patristocrats, the hardest codebusters cipher."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -70,6 +70,7 @@ flutter:
 
   assets:
     - assets/music/
+    - assets/quotes/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

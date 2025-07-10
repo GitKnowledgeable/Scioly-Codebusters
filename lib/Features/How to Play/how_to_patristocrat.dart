@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class PatristocratInstructionsPage extends StatelessWidget {
   const PatristocratInstructionsPage({super.key});

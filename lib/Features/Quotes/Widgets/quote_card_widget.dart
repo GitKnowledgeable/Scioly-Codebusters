@@ -1,4 +1,4 @@
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 import 'package:flutter/material.dart';
 
 class QuoteCard extends StatelessWidget {

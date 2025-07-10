@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class Instructions extends StatelessWidget {
   final String gameId;

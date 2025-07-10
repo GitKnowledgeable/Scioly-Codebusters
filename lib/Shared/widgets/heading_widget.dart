@@ -5,13 +5,15 @@ class HeadingWidget extends ConsumerWidget {
   final Color neonColor;
   final String title;
   final String num;
+  final Icon? numIcon;
   final double fontSize;
 
   const HeadingWidget({
     super.key,
     required this.neonColor,
     required this.title,
-    required this.num,
+    this.num = "",
+    this.numIcon,
     this.fontSize = 18,
   });
 
@@ -28,13 +30,15 @@ class HeadingWidget extends ConsumerWidget {
             color: neonColor,
             padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
             margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-            child: Text(
-              num,
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: fontSize - 5,
-              ),
-            ),
+            child: numIcon == null
+                ? Text(
+                    num,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: fontSize - 5,
+                    ),
+                  )
+                : numIcon,
           ),
 
           Text(

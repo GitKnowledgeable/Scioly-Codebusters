@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:math';
-import 'package:projects/library.dart';
+import 'package:flutter/services.dart';
+import 'package:scioly_codebusters/library.dart';
 
 enum Language { english, spanish }
 
@@ -65,16 +67,19 @@ class QuoteLibrary {
   }
 
   //add functional quotes
-  static Quote getNewQuote(Language language) {
+  static Future<Quote> getNewQuote(Language language) async {
+    Map<dynamic, dynamic>? randQuote;
     String tempOgQuote;
     if (language == Language.spanish) {
       tempOgQuote =
           "*Hola como estas? Espero que estes bien. Este es un ejemplo de cita en español para probar el sistema. Necesito mas palabras para llenar espacio, asi que eso es lo que estoy haciendo. Parece que necesito aun mas palabras. ¿Es esto suficiente? Supongo que solo hay una manera de averiguarlo...";
     } else {
+      randQuote = await getQuote("assets/quotes/englishQuotes.json");
       tempOgQuote =
           "*hello, world! What a wonderful time to be alive. Don't you think so? I need some more words to fill space so that is what this is. Looks like I need even more words. Is this enough? I guess there's only one way to find out...";
     }
-    String tempAuthor = "Testing Author";
+    tempOgQuote = randQuote?["quote"] ?? tempOgQuote;
+    String tempAuthor = randQuote?["author"] ?? "Testing Author";
     String tempPlainText = tempOgQuote.toUpperCase();
     Map<String, String> tempKey = generateKey(tempPlainText, language);
     String tempCipherText = generateCipherText(tempPlainText, tempKey);
@@ -88,4 +93,18 @@ class QuoteLibrary {
       frequencies: tempFrequencies,
     );
   }
+}
+
+Future<Map> loadQuotes(String file) async {
+  String jsonQuotes = await rootBundle.loadString(file);
+  Map decoded = jsonDecode(jsonQuotes);
+  return decoded;
+}
+
+Future<Map> getQuote(String file) async {
+  Random rand = Random();
+  Map allQuotes = await loadQuotes(file);
+  var randIdx = rand.nextInt(allQuotes.length);
+  var quote = allQuotes[randIdx.toString()];
+  return quote;
 }

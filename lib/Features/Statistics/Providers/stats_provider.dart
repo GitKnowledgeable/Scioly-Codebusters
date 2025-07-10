@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 final statsProvider = Provider.family<QuoteStats, String>((ref, gameModeKey) {
   final allQuotes = ref.watch(quoteListProvider);

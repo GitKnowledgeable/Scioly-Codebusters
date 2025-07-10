@@ -1,4 +1,4 @@
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 import 'package:flutter/material.dart';
 
 class GameSetup {
@@ -11,13 +11,13 @@ class GameSetup {
     height = size.height;
   }
 
-  static Game buildCryptogram(
+  static Future<Game> buildCryptogram(
     GameMode gameMode,
     Language language,
     String gameId,
-  ) {
+  ) async {
     List<Cell> newCells = [];
-    Quote quote = QuoteLibrary.getNewQuote(language);
+    Quote quote = await QuoteLibrary.getNewQuote(language);
     for (String i in quote.plainText.split('')) {
       if (QuoteLibrary.isException(i, language) && gameId != "Patristocrat") {
         newCells.add(Cell(text: i, cipher: i, plainText: i, isException: true));

@@ -1,5 +1,5 @@
 import 'dart:collection';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class PatternMap {
   final SplayTreeMap<String, List<String>> _map = SplayTreeMap(

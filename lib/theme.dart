@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projects/library.dart';
+import 'package:scioly_codebusters/library.dart';
 //import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Button dimensions for game controls (new quote, etc)
@@ -28,6 +28,8 @@ final keyboardH = screenH * 0.25; // Height of the keyboard widget
 const double panelHeight = 60.0;
 
 Color gameCellColor = AppTheme.logoGreen;
+
+String bgMusicFile = "assets/music/bg.mp3";
 
 /// ThemeProvider for the app. Exposes ThemeData globally via Riverpod.
 final appThemeProvider = AppTheme.theme;
