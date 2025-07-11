@@ -151,7 +151,7 @@ class GamePageSetup extends ConsumerWidget {
                             ),
                           ),
                         ),
-                        if (cellCount > 0) SizedBox(width: buttonMargin - 10),
+                        if (cellCount > 0) SizedBox(width: buttonMargin),
                         if (cellCount > 0)
                           Expanded(
                             child: SizedBox(

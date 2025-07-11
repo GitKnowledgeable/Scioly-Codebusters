@@ -27,11 +27,9 @@ class DictionaryWordWidget extends StatelessWidget {
     return Container(
       key: wordKey,
       decoration: BoxDecoration(
-        color: isWordHighlighted
-            ? Colors.yellow.withAlpha((0.2 * 255).toInt())
-            : Colors.black,
+        color: isWordHighlighted ? Colors.orange.withAlpha(100) : Colors.black,
         border: Border.all(
-          color: isWordHighlighted ? Colors.yellow : curColor,
+          color: isWordHighlighted ? Colors.orange : curColor,
           width: 2,
         ),
       ),
@@ -39,7 +37,7 @@ class DictionaryWordWidget extends StatelessWidget {
       child: Text(
         word,
         style: TextStyle(
-          color: isWordHighlighted ? Colors.yellow[900] : curColor,
+          color: isWordHighlighted ? Colors.white : curColor,
           fontWeight: isWordHighlighted ? FontWeight.bold : FontWeight.normal,
         ),
       ),

@@ -1,4 +1,3 @@
-import 'package:flutter_soloud/flutter_soloud.dart';
 import 'package:hive/hive.dart';
 part 'setting_prefs.g.dart'; // Needed for generated code
 

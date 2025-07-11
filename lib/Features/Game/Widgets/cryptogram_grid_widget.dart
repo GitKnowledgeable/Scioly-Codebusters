@@ -25,10 +25,14 @@ class CryptogramGridWidget extends ConsumerWidget {
       grid.add(rowWidgets);
       grid.add([SizedBox(width: maxLength, height: padding)]);
     }
-    return Column(
-      children: grid.map((rowWidgets) {
-        return Row(children: rowWidgets);
-      }).toList(),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: grid.map((rowWidgets) {
+          return Row(children: rowWidgets);
+        }).toList(),
+      ),
     );
   }
 }

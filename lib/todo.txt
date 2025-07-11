@@ -30,12 +30,11 @@ v.2.0.0
 13. Make Game Setup Buttons look better (not aligned), and button presses clear (check why web looks weird): eg. highlight dictionary button
     
 Bugs to solve:
-- Xenocrypt accented text showing up as text - Fixed --> Some quotes are too long and cause render overflow (saw it happen twice)
+- Xenocrypt accented text showing up as text - Fixed --> Some quotes are too long and cause render overflow (saw it happen twice) - Fixed
 - Aristocrat styling on Iphone 13
-- Background music not working - Fixed
-- Keyboard hovering with shorter quotes - Fixed
-- View Solved Quotes is on two lines on Iphone 13 (increase button size) - Fixed
-- Dictionary takes super long to search longer words (do we even need the dictionary?)
+- Only add 2 star times to stats
+- Replace gesturedetector with something else to remove onTapDown effect looking weird on phone
+- Lower load time for searching bigger words (math), clean up words (missing common words, random words)
 
 -- video showcasing features --
 
@@ -48,6 +47,10 @@ v.2.1.0
 4. Test out Hive capabilties
 5. Add/Delete spaces button for patristocrat
 6. Spanish translations
+7. Web app
+8. Dictionary Cleanup
+9. Piechart displaying stars (how many of solved puzzles is how many stars) in stats
+10. Display spanish translations
 
 -- Youtube videos after 2.1 --
 
@@ -56,3 +59,8 @@ v.2.2.0
     - 5 minutes to solve as many cryptograms as you can
     - Customizable (time)
 2. Add words to dictionary or create dictionary
+3. Potential four star (without looking/clicking around)
+4. Save incomplete quotes/save quotes for later
+5. Sharing specific cryptograms (sharing link to solve quotes)
+6. Creating custom cryptograms
+7. Leaderboard system for solve times every week

@@ -79,7 +79,7 @@ class CellWidget extends ConsumerWidget {
                 child: Text(
                   cells[index].text,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: containerFS,
                     fontWeight: FontWeight.w600,
                     color: textColor,
                   ),

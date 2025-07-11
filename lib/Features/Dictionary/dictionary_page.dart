@@ -22,7 +22,7 @@ class DictionaryPage extends ConsumerWidget {
         child: Scaffold(
           backgroundColor: AppTheme.appBarBackground,
           appBar: AppBar(
-            title: const Text('Word Pattern Dictionary'),
+            title: const Text('Pattern Dictionary'),
             backgroundColor: AppTheme.appBarBackground,
             bottom: const TabBar(
               unselectedLabelColor: Colors.white,
