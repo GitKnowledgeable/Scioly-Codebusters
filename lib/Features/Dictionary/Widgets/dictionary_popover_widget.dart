@@ -63,6 +63,7 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                       var curWord = word
                           .toUpperCase()
                           .replaceAll("'", "")
+                          .replaceAll("-", "")
                           .split("");
                       if (gameMode == GameMode.assisted) {
                         curWord = curWord.toSet().toList();
