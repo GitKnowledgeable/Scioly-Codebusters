@@ -55,6 +55,8 @@ class StatsPage extends StatelessWidget {
                   solved: stats.totalSolvedLastWeek.toString(),
                 ),
                 const SizedBox(height: padding + 10),
+                SubsectionTitle('Only 2-star solves and higher are counted'),
+                const SizedBox(height: padding + 10),
               ],
             ),
           ),

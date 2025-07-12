@@ -46,6 +46,11 @@ class XenocryptInstructionsPage extends StatelessWidget {
                 'Use letter frequencies — Spanish has common letters too (E, A, O, L).',
                 'Use the dictionary tool to get Spanish word suggestions by pattern.',
               ]),
+              SectionTitle('Additional notes'),
+              BulletPoints([
+                'll is considered two letters',
+                'Ñ is its own letter, but accented letters are not treated as seperate letters',
+              ]),
               Container(
                 padding: EdgeInsets.all(insetPadding),
                 decoration: BoxDecoration(
@@ -63,6 +68,11 @@ class XenocryptInstructionsPage extends StatelessWidget {
                 '✅ Show Correct — Highlights which letters are correct.',
                 '📖 Dictionary — Suggests words for a selected pattern.',
                 '💬 Hint — Reveals the correct letter at a selected spot.',
+              ]),
+              SectionTitle('Game Modes'),
+              BulletPoints([
+                'Assisted — Fills in identical letters automatically',
+                'Manual — Fill every letter manually, good for paper competition practice',
               ]),
               SectionTitle('Star Solves'),
               BulletPoints([

@@ -55,6 +55,11 @@ class PatristocratInstructionsPage extends StatelessWidget {
                 '✅ Show Correct — Highlights which letters are correct.',
                 '💬 Hint — Reveals the correct letter at a selected spot.',
               ]),
+              SectionTitle('Game Modes'),
+              BulletPoints([
+                'Assisted — Fills in identical letters automatically',
+                'Manual — Fill every letter manually, good for paper competition practice',
+              ]),
               SectionTitle('Star Solves'),
               BulletPoints([
                 '⭐ One stars: Solve with any hints (dictionary, show correct, or hint button).',
