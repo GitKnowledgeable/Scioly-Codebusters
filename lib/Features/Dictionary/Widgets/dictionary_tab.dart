@@ -2,6 +2,81 @@ import 'package:flutter/material.dart';
 import 'package:scioly_codebusters/library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+double getEntryHeight(
+  int wordCount,
+  double screenWidth,
+  double wordWidgetWidth,
+  double wordWidgetSpacing,
+  double wordWidgetHeight,
+  double verticalPadding,
+) {
+  // Calculate how many words fit per row
+  int wordsPerRow =
+      ((screenWidth - 2 * verticalPadding) /
+              (wordWidgetWidth + wordWidgetSpacing))
+          .floor();
+  int numRows = (wordCount / wordsPerRow).ceil();
+  return numRows * wordWidgetHeight +
+      verticalPadding * 2 +
+      25 +
+      10; // + heading + SizedBox
+}
+
+double getWordOffsetInEntry(
+  int wordIndex,
+  int wordsPerRow,
+  double wordWidgetHeight,
+  double verticalPadding,
+  double headingHeight,
+  double sizedBoxHeight,
+) {
+  int row = (wordIndex / wordsPerRow).floor();
+  return verticalPadding +
+      headingHeight +
+      sizedBoxHeight +
+      row * wordWidgetHeight;
+}
+
+double calculateWordScrollOffset(
+  List<MapEntry<String, List<String>>> entries,
+  int targetEntryIndex,
+  int targetWordIndex,
+  double screenWidth,
+  double wordWidgetWidth,
+  double wordWidgetSpacing,
+  double wordWidgetHeight,
+  double verticalPadding,
+  double headingHeight,
+  double sizedBoxHeight,
+) {
+  // 1. Sum heights of all previous entries
+  double offset = 0;
+  int wordsPerRow =
+      ((screenWidth - 2 * verticalPadding) /
+              (wordWidgetWidth + wordWidgetSpacing))
+          .floor();
+  for (int i = 0; i < targetEntryIndex; i++) {
+    offset += getEntryHeight(
+      entries[i].value.length,
+      screenWidth,
+      wordWidgetWidth,
+      wordWidgetSpacing,
+      wordWidgetHeight,
+      verticalPadding,
+    );
+  }
+  // 2. Add offset for the word within its entry
+  offset += getWordOffsetInEntry(
+    targetWordIndex,
+    wordsPerRow,
+    wordWidgetHeight,
+    verticalPadding,
+    headingHeight,
+    sizedBoxHeight,
+  );
+  return offset;
+}
+
 class DictionaryTab extends ConsumerStatefulWidget {
   final String dictionaryId;
   final List<Color> colors;
@@ -96,7 +171,7 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
 
     if (foundWordKey != null) {
       _userInterrupted = false;
-      _scrollToWord(foundWordKey);
+      _scrollToWord(foundWordKey, entries, foundEntryIndex!);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -107,7 +182,12 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
     }
   }
 
-  void _scrollToWord(String wordKey, [int attempt = 0]) async {
+  void _scrollToWord(
+    String wordKey,
+    List<MapEntry<String, List<String>>> entries,
+    int targetEntryIndex, [
+    int attempt = 0,
+  ]) async {
     if (_userInterrupted) {
       if (_isJumping) setState(() => _isJumping = false);
       return;
@@ -131,6 +211,12 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
       final parts = wordKey.split('-');
       final word = parts.length > 1 ? parts.sublist(1).join('-') : '';
       int len = word.length;
+      /*var words = entries[targetEntryIndex].value;
+      int i = 0;
+      for (String w in words) {
+        if (w == word) break;
+        i++;
+      }*/
       double jumpOffset = benchmarks.containsKey(len)
           ? benchmarks[len]!
           : benchmarks[11]!; // fallback to largest
@@ -169,7 +255,7 @@ class _DictionaryTabState extends ConsumerState<DictionaryTab> {
           curve: Curves.easeInOut,
         );
         await Future.delayed(const Duration(milliseconds: 120));
-        _scrollToWord(wordKey, attempt + 1);
+        _scrollToWord(wordKey, entries, targetEntryIndex, attempt + 1);
       }
     });
   }
