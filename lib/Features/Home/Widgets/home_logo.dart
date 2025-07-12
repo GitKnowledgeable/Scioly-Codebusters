@@ -11,7 +11,7 @@ class HomeLogo extends StatelessWidget {
       width: width,
       height: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(500),
         border: Border.all(color: AppTheme.logoGreen, width: 2),
         gradient: LinearGradient(
           begin: Alignment.bottomLeft,
@@ -26,18 +26,22 @@ class HomeLogo extends StatelessWidget {
           ),
         ],
       ),
-      child: Center(
-        child: Text(
-          "SCIOLY\nCODEBUSTERS",
-          style: TextStyle(
-            color: AppTheme.logoGreen,
-            fontSize: 17,
-            fontFamily: 'JetBrainsMonoBold',
-            fontWeight: FontWeight.w800,
-          ),
-          textAlign: TextAlign.center,
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(500),
+        child: Image.asset("assets/image/scioly-logo.png", fit: BoxFit.cover),
       ),
+      // child: Center(
+      //   child: Text(
+      //     "SCIOLY\nCODEBUSTERS",
+      //     style: TextStyle(
+      //       color: AppTheme.logoGreen,
+      //       fontSize: 17,
+      //       fontFamily: 'JetBrainsMonoBold',
+      //       fontWeight: FontWeight.w800,
+      //     ),
+      //     textAlign: TextAlign.center,
+      //   ),
+      // ),
     );
   }
 }

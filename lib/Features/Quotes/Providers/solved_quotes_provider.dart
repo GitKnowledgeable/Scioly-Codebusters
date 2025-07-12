@@ -32,11 +32,8 @@ class QuoteListNotifier extends StateNotifier<List<SolvedQuote>> {
     state = [...state]; // notify listeners
   }
 
-  Future<void> favoriteMostRecentQuote() async {
-    final quote = state[state.length - 1];
-    quote.isFavorite = true;
-    await quote.save();
-    state = [...state];
+  Future<void> toggleFavoriteMostRecent() async {
+    await toggleFavorite(state.length - 1);
   }
 }
 

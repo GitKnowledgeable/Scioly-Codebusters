@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scioly_codebusters/library.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scioly_codebusters/library.dart';
 
-class FinishedQuoteWidget extends ConsumerWidget {
+class FinishedQuoteWidget extends ConsumerStatefulWidget {
   final String quote;
   final String author;
   final String gameKey;
@@ -14,11 +17,43 @@ class FinishedQuoteWidget extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final provider = ref.read(gameProvider(gameKey).notifier);
+  ConsumerState<FinishedQuoteWidget> createState() =>
+      _FinishedQuoteWidgetState();
+}
 
-    final time = ref.read(timerProvider(gameKey).notifier).getTime();
-    int rating = ref.watch(gameProvider(gameKey).select((s) => s.rating));
+class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _animationController;
+  late final Animation<double> _alphaColorAnimation;
+  bool isFavorited = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+
+    _alphaColorAnimation = Tween(begin: 50.0, end: 100.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = ref.read(gameProvider(widget.gameKey).notifier);
+
+    final time = ref.read(timerProvider(widget.gameKey).notifier).getTime();
+    int rating = ref.watch(
+      gameProvider(widget.gameKey).select((s) => s.rating),
+    );
     List<Icon> stars = [];
     for (int i = 0; i < rating; i++) {
       stars.add(Icon(Icons.star, color: Colors.yellow));
@@ -43,7 +78,7 @@ class FinishedQuoteWidget extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              QuoteDisplayWidget(quote: quote, author: author),
+              QuoteDisplayWidget(quote: widget.quote, author: widget.author),
               SizedBox(height: 5),
               Row(
                 children: [
@@ -81,12 +116,17 @@ class FinishedQuoteWidget extends ConsumerWidget {
               ),
               const SizedBox(height: 20),
               StyledButtonWidget(
-                value: "Favorite Quote",
+                value: isFavorited == true
+                    ? "Unfavorite Quote"
+                    : "Favorite Quote",
                 bgColor: Colors.blueAccent,
                 onPressed: () async {
                   await ref
                       .read(quoteListProvider.notifier)
-                      .favoriteMostRecentQuote();
+                      .toggleFavoriteMostRecent();
+                  setState(() {
+                    isFavorited = !isFavorited;
+                  });
                 },
               ),
               const SizedBox(height: 20),
