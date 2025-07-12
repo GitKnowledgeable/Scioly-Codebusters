@@ -35,6 +35,7 @@ Bugs to solve:
 - Only add 2 star times to stats
 - Replace gesturedetector with something else to remove onTapDown effect looking weird on phone
 - Lower load time for searching bigger words (math), clean up words (missing common words, random words)
+- Change save quote to favorite quote instead
 
 -- video showcasing features --
 
