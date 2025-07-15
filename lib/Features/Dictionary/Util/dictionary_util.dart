@@ -9,6 +9,9 @@ String getPatternKey(String word) {
     if (ch == "'") {
       pattern.write("'");
       continue;
+    } else if (ch == "-") {
+      pattern.write("-");
+      continue;
     }
     if (!letterMap.containsKey(ch)) {
       letterMap[ch] = String.fromCharCode(nextCharCode++);
@@ -46,7 +49,10 @@ int getWordStart(int i, List<Cell> cells) {
   if (cells.isEmpty || i < 0 || i >= cells.length) {
     return 0;
   }
-  while (i >= 0 && (!cells[i].isException || cells[i].plainText == "'")) {
+  while (i >= 0 &&
+      (!cells[i].isException ||
+          cells[i].plainText == "'" ||
+          cells[i].plainText == "-")) {
     i--;
   }
   return i + 1;
@@ -59,7 +65,10 @@ String getWord(int wordStart, List<Cell> cells) {
   String word = "";
   for (
     int i = wordStart;
-    !cells[i].isException || cells[i].plainText == "'";
+    i < cells.length &&
+        (!cells[i].isException ||
+            cells[i].plainText == "'" ||
+            cells[i].plainText == "-");
     i++
   ) {
     word += cells[i].plainText;
