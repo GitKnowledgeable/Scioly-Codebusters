@@ -34,11 +34,11 @@ class CellWidget extends ConsumerWidget {
 
     // This set of conditions if more important than the .isCorrect conditions
     if (cells[index].isSelected) {
-      cellColor = Color(0xFF023E8A);
+      cellColor = Color.fromARGB(255, 3, 0, 175);
       // cellColor = Color(0xFFB71C1C);
       textColor = Colors.white;
     } else if (cells[index].isLit) {
-      cellColor = Color(0xFF448AFF);
+      cellColor = Color.fromRGBO(43, 117, 255, 1);
       // cellColor = Color(0xFFF44336);
       textColor = Colors.white;
     }

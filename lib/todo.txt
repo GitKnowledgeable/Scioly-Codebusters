@@ -56,6 +56,7 @@ v.2.1.0
 11. Improve styling
     - Perfect solve animation
     - intro logo animation
+    - dictionary words have color based on how common they are
 
 -- Youtube videos after 2.1 --
 

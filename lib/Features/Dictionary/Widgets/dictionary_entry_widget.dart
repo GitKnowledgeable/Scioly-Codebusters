@@ -7,12 +7,12 @@ double entryWidgetHeight =
     10 +
     2 +
     14 +
-    wordH -
-    4 +
+    wordH +
+    //4 +
     insetPadding * 2 +
     4 +
     24 +
-    20; //number, padding, border, padding, ..., outside borders + spacing + shadows,
+    14; //number, padding, border, padding, ..., outside borders + spacing + shadows,
 
 class DictionaryEntryWidget extends StatelessWidget {
   final MapEntry<String, List<String>> entry;

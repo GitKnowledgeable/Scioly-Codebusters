@@ -11,7 +11,6 @@ double getEntryHeight(int wordCount, int wordLen) {
               (getWordWidgetWidth(wordLen) + wordWidgetSpacing))
           .floor();
   int numRows = (wordCount / wordsPerRow).ceil();
-  debugPrint("rows: $numRows");
   return (entryWidgetHeight + (numRows - 1) * wordH)
       .toDouble(); // + heading + SizedBox
 }
@@ -30,7 +29,6 @@ double getJump(
     int wordCount = entry.value.length;
     int wordLen = entry.key.length;
     ans += getEntryHeight(wordCount, wordLen);
-    debugPrint(ans.toString());
   }
   return ans;
 }

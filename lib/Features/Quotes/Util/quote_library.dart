@@ -78,12 +78,17 @@ Future<Quote> getNewQuote(Language language) async {
     tempOgQuote =
         "hello, world! What a wonderful time to be alive. Don't you think so? I need some more words to fill space so that is what this is. Looks like I need even more words. Is this enough? I guess there's only one way to find out...";
   }
-  tempOgQuote = randQuote["quote"] ?? tempOgQuote;
   // don't delete these comments
+  //puzzle one: that, people, without
+  tempOgQuote = randQuote["quote"] ?? tempOgQuote;
   // tempOgQuote =
   //     "In photography, everything is so ordinary; it takes a lot of looking before you learn to see the extraordinary.";
+  // tempOgQuote = "Sun spreads through the treetops like an epidemic.";
+  // tempOgQuote = "Love goes out the door when money comes innuendo.";
   String tempAuthor = randQuote["author"] ?? "Please Try Again";
-  //String tempAuthor = "David Bailey";
+  // String tempAuthor = "David Bailey";
+  // String tempAuthor = "Dave Bonta";
+  // String tempAuthor = "Groucho Marx";
   String tempPlainText = removeAccentsButKeepEnye(tempOgQuote.toUpperCase());
   Map<String, String> tempKey = generateKey(tempPlainText, language);
   String tempCipherText = generateCipherText(tempPlainText, tempKey);
