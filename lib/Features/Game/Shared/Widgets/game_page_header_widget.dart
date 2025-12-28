@@ -96,7 +96,8 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                           activeColor: showCorrectColor,
                           side: BorderSide(color: showCorrectColor),
                           value: showCorrect,
-                          onChanged: (bool? value) {
+                          onChanged: (bool? value) async {
+                            await keyboardClickSound();
                             if (showCorrect) {
                               provider.markIncorrect();
                             } else {
@@ -112,7 +113,8 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                   SizedBox(width: padding),
                 if (!widget.gameKey.contains("Patristocrat"))
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
+                      await keyboardClickSound();
                       provider.setSuggestions(!showSuggestions);
                     },
                     child: Container(
@@ -132,7 +134,8 @@ class _GamePageHeaderWidgetState extends ConsumerState<GamePageHeaderWidget>
                   ),
                 SizedBox(width: padding),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    await keyboardClickSound();
                     provider.hint();
                     if (mounted) {
                       _animationController.forward();

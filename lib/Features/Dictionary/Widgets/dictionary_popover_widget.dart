@@ -58,7 +58,8 @@ class DictionaryPopoverWidget extends ConsumerWidget {
                     paddingVertical: 0,
                     height: containerHeight,
                     addTextShadow: true,
-                    onPressed: () {
+                    onPressed: () async {
+                      await keyboardClickSound();
                       keyboard.saveHistory();
                       var curWord = word
                           .toUpperCase()

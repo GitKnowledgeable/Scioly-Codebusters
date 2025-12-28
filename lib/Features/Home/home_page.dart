@@ -13,7 +13,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    widget.audioCont?.playBgSound();
+    audioCont = widget.audioCont;
+    audioCont?.playBgSound();
     bgMatrixOn = settingsBox?.get('prefs').bgMatrixOn;
   }
 
@@ -74,7 +75,10 @@ class _HomePageState extends State<HomePage> {
                         btnText: "Aristocrat",
                         neonColor: Colors.pinkAccent,
                         num: "01",
-                        onPressed: () {
+                        onPressed: () async {
+                          await buttonClickSound();
+                          // Make sure context is still valid with mounted
+                          if (!context.mounted) return;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -91,7 +95,10 @@ class _HomePageState extends State<HomePage> {
                         btnText: "Patristocrat",
                         neonColor: Colors.yellowAccent,
                         num: "02",
-                        onPressed: () {
+                        onPressed: () async {
+                          await buttonClickSound();
+                          // Make sure context is still valid with mounted
+                          if (!context.mounted) return;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -108,7 +115,10 @@ class _HomePageState extends State<HomePage> {
                         btnText: "Xenocrypt",
                         neonColor: Colors.lightBlueAccent,
                         num: "03",
-                        onPressed: () {
+                        onPressed: () async {
+                          await buttonClickSound();
+                          // Make sure context is still valid with mounted
+                          if (!context.mounted) return;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -125,7 +135,10 @@ class _HomePageState extends State<HomePage> {
                         btnText: "View Dictionary",
                         neonColor: AppTheme.logoGreen,
                         num: "04",
-                        onPressed: () {
+                        onPressed: () async {
+                          await buttonClickSound();
+                          // Make sure context is still valid with mounted
+                          if (!context.mounted) return;
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -139,7 +152,10 @@ class _HomePageState extends State<HomePage> {
                         btnText: "View Solved Puzzles",
                         neonColor: Colors.pinkAccent,
                         num: "05",
-                        onPressed: () {
+                        onPressed: () async {
+                          await buttonClickSound();
+                          // Make sure context is still valid with mounted
+                          if (!context.mounted) return;
                           Navigator.push(
                             context,
                             MaterialPageRoute(

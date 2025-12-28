@@ -16,22 +16,29 @@ class KeyboardShortcutsWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Shortcuts(
       // Maps ctrl + Z and cmd + Z to undo last keyboard action
+      // Maps ctrl + backspace to reset
       // Maps backspace to remove val at current selected cell
       // Maps left arrow key to moving to left cell
       // Maps right arrow key to moving to right cell
       // (defined in Actions folder)
-      shortcuts: <LogicalKeySet, Intent>{
-        LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyZ):
+      shortcuts: <SingleActivator, Intent>{
+        SingleActivator(LogicalKeyboardKey.keyZ, control: true):
             UndoCellIntent(),
-        LogicalKeySet(LogicalKeyboardKey.meta, LogicalKeyboardKey.keyZ):
-            UndoCellIntent(),
-        LogicalKeySet(LogicalKeyboardKey.backspace): DeleteCellIntent(),
-        LogicalKeySet(LogicalKeyboardKey.arrowLeft): MoveCellIntent(key: '<'),
-        LogicalKeySet(LogicalKeyboardKey.arrowRight): MoveCellIntent(key: '>'),
+        SingleActivator(LogicalKeyboardKey.keyZ, meta: true): UndoCellIntent(),
+        SingleActivator(LogicalKeyboardKey.backspace, control: true):
+            ResetCellIntent(),
+        SingleActivator(LogicalKeyboardKey.backspace, meta: true):
+            ResetCellIntent(),
+        SingleActivator(LogicalKeyboardKey.backspace): DeleteCellIntent(),
+        SingleActivator(LogicalKeyboardKey.arrowLeft): MoveCellIntent(key: '<'),
+        SingleActivator(LogicalKeyboardKey.arrowRight): MoveCellIntent(
+          key: '>',
+        ),
       },
       child: Actions(
         actions: <Type, Action<Intent>>{
           UndoCellIntent: UndoCellAction(gameKey: gameKey, ref: ref),
+          ResetCellIntent: ResetCellAction(gameKey: gameKey, ref: ref),
           DeleteCellIntent: DeleteCellAction(gameKey: gameKey, ref: ref),
           KeyPressIntent: KeyPressAction(gameKey: gameKey, ref: ref),
           MoveCellIntent: MoveCellAction(gameKey: gameKey, ref: ref),

@@ -59,7 +59,8 @@ class GamePageSetup extends ConsumerWidget {
                             : Colors.grey,
                         initialAlpha: 0,
                         finalAlpha: 10,
-                        onPressed: () {
+                        onPressed: () async {
+                          await buttonClickSound();
                           gmProvider.setGameMode(GameMode.assisted);
                         },
                       ),
@@ -74,7 +75,8 @@ class GamePageSetup extends ConsumerWidget {
                             : Colors.grey,
                         initialAlpha: 0,
                         finalAlpha: 10,
-                        onPressed: () {
+                        onPressed: () async {
+                          await buttonClickSound();
                           gmProvider.setGameMode(GameMode.manual);
                         },
                       ),
@@ -89,7 +91,10 @@ class GamePageSetup extends ConsumerWidget {
                             child: HomeButtonWidget(
                               btnText: "Stats",
                               neonColor: Colors.yellowAccent,
-                              onPressed: () {
+                              onPressed: () async {
+                                await buttonClickSound();
+                                // Make sure context is still valid with mounted
+                                if (!context.mounted) return;
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -108,7 +113,10 @@ class GamePageSetup extends ConsumerWidget {
                             child: HomeButtonWidget(
                               btnText: "How to Play",
                               neonColor: Colors.yellowAccent,
-                              onPressed: () {
+                              onPressed: () async {
+                                await buttonClickSound();
+                                // Make sure context is still valid with mounted
+                                if (!context.mounted) return;
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -132,11 +140,14 @@ class GamePageSetup extends ConsumerWidget {
                               btnText: "New Puzzle",
                               neonColor: Colors.redAccent,
                               onPressed: () async {
+                                await buttonClickSound();
+                                // Make sure context is still valid with mounted
                                 await gProvider.buildCryptogram(
                                   gameMode,
                                   language,
                                   gameId,
                                 );
+                                if (!context.mounted) return;
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -159,7 +170,10 @@ class GamePageSetup extends ConsumerWidget {
                               child: HomeButtonWidget(
                                 btnText: "Continue",
                                 neonColor: Colors.pinkAccent,
-                                onPressed: () {
+                                onPressed: () async {
+                                  await buttonClickSound();
+                                  // Make sure context is still valid with mounted
+                                  if (!context.mounted) return;
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

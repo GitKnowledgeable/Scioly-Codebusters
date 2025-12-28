@@ -94,7 +94,10 @@ class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
               StyledButtonWidget(
                 value: "Play Again",
                 bgColor: Colors.redAccent,
-                onPressed: () {
+                onPressed: () async {
+                  await buttonClickSound();
+                  // Make sure context is still valid with mounted
+                  if (!context.mounted) return;
                   Navigator.of(context).pop();
                   provider.destroy();
                 },
@@ -103,7 +106,10 @@ class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
               StyledButtonWidget(
                 value: "View Quote",
                 bgColor: AppTheme.logoGreen,
-                onPressed: () {
+                onPressed: () async {
+                  await buttonClickSound();
+                  // Make sure context is still valid with mounted
+                  if (!context.mounted) return;
                   provider.setPopup(false);
                 },
               ),
@@ -114,6 +120,7 @@ class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
                     : "Favorite Quote",
                 bgColor: Colors.blueAccent,
                 onPressed: () async {
+                  await buttonClickSound();
                   await ref
                       .read(quoteListProvider.notifier)
                       .toggleFavoriteMostRecent();
@@ -126,7 +133,10 @@ class _FinishedQuoteWidgetState extends ConsumerState<FinishedQuoteWidget>
               StyledButtonWidget(
                 value: "Home",
                 bgColor: Colors.yellowAccent,
-                onPressed: () {
+                onPressed: () async {
+                  await buttonClickSound();
+                  // Make sure context is still valid with mounted
+                  if (!context.mounted) return;
                   Navigator.of(context).popUntil((route) => route.isFirst);
                   provider.destroy();
                 },

@@ -33,6 +33,10 @@ const searchPadding = 12.0;
 //panel height for timer etc.
 const double panelHeight = 60.0;
 
+AudioController? audioCont; // Audio controller to play soundeffects
+String buttonClickAsset = "assets/music/sound_effects/button_click.mp3";
+String keyboardClickAsset = "assets/music/sound_effects/keyboard_click.mp3";
+
 Color gameCellColor = AppTheme.logoGreen;
 
 String bgMusicFile = "assets/music/bg.mp3";
@@ -213,4 +217,12 @@ String toTitleCase(String text) {
         return word[0].toUpperCase() + word.substring(1).toLowerCase();
       })
       .join(' ');
+}
+
+Future<void> buttonClickSound() async {
+  return audioCont?.playSound(buttonClickAsset);
+}
+
+Future<void> keyboardClickSound() async {
+  return audioCont?.playSound(keyboardClickAsset);
 }

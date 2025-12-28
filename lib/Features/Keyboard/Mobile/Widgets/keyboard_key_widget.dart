@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scioly_codebusters/library.dart';
 
 class KeyboardKeyWidget extends ConsumerStatefulWidget {
   final String keyValue;
@@ -51,7 +52,8 @@ class _KeyboardKeyWidgetState extends ConsumerState<KeyboardKeyWidget>
     super.dispose();
   }
 
-  void _onTap() {
+  void _onTap() async {
+    await keyboardClickSound();
     _animationController.forward();
     widget.onPressed();
     Future.delayed(Duration(milliseconds: widget.animDuration), () {
